@@ -1,0 +1,134 @@
+/* Contact page — NRI Suvidha reference layout */
+
+.heroBadge {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--maincolor);
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: clamp(1.65rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--headingcolor);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.heroSubtitle {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--footercolor);
+  max-width: 38rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contactCard {
+  height: 100%;
+  padding: 1.75rem 1.85rem;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 25%);
+  box-shadow: 0 8px 32px rgba(15, 22, 30, 0.06);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contactCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 44px rgba(15, 22, 30, 0.1);
+}
+
+.contactCardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--headingcolor);
+  margin-bottom: 1.25rem;
+}
+
+.contactLine {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.contactLine:last-child {
+  margin-bottom: 0;
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--maincolor), transparent 90%);
+  color: var(--maincolor);
+  font-size: 0.95rem;
+}
+
+.contactLine a {
+  color: var(--headingcolor);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contactLine a:hover {
+  color: var(--maincolor);
+}
+
+.supportNote {
+  font-size: 0.875rem;
+  color: var(--footercolor);
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+
+.formWrap {
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 25%);
+  box-shadow: 0 8px 32px rgba(15, 22, 30, 0.06);
+  padding: 1.75rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .formWrap {
+    padding: 2.25rem 2.5rem;
+  }
+}
+
+.formTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--headingcolor);
+  margin-bottom: 0.35rem;
+}
+
+.formSubtitle {
+  font-size: 0.9rem;
+  color: var(--footercolor);
+  margin-bottom: 1.5rem;
+}
+
+.inputRounded {
+  border-radius: 0.65rem !important;
+  border-color: color-mix(in srgb, var(--bordercolor), transparent 10%) !important;
+}
+
+.inputRounded:focus {
+  border-color: color-mix(in srgb, var(--maincolor), transparent 35%) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--maincolor), transparent 88%) !important;
+}

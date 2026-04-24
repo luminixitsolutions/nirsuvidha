@@ -1,0 +1,71 @@
+/* Rotating hero “Trusted by…” badge — enter animation on each line change */
+
+/* Kicker pill — same glass treatment as hero stats (home-banner-counter .statsItem) */
+.eyebrowPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(3px);
+  color: #c9a54c;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Light gold / cream hero — readable on warm background */
+.eyebrowPillLight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 74, 0.4);
+  background: rgba(255, 255, 255, 0.75);
+  color: #6b5a2a;
+  font-weight: 500;
+  line-height: 1.3;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.eyebrowPillLight .eyebrowDash,
+.eyebrowDash {
+  flex-shrink: 0;
+  width: 12px;
+  height: 3px;
+  border-radius: 1px;
+  background: #c9a54c;
+  opacity: 0.85;
+}
+
+.root {
+  display: inline-block;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.line {
+  display: inline-block;
+  animation: heroBadgeEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroBadgeEnter {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    animation: none;
+  }
+}

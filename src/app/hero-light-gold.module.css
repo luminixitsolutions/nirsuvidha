@@ -1,0 +1,149 @@
+/* Hero: no photo — light gold wash + same bottom wave (banner-curve.svg) */
+
+.heroLightGold {
+  position: relative;
+  overflow: hidden;
+  background-color: #f7ecd8;
+  background-image: linear-gradient(
+  165deg,
+  #FFFFFF 0%,
+  #FDFBF7 45%,
+  #FAF6EF 100%
+);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heroTitle {
+  color: #1a1a1a;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  /* Explicit size — beats theme `h1` rules at 1200px+ (3.8em / 4em) */
+  font-size: 50px !important;
+}
+
+/* Brand gold accent (matches premium light theme) */
+.heroTitleGold {
+  color: #c9a24a;
+  font-weight: 700;
+}
+
+.heroSub {
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 36rem;
+}
+
+/* Wave graphic sits under content; keep curve visible */
+.wave {
+  z-index: 1;
+  pointer-events: none;
+  line-height: 0;
+}
+
+.wave :global(img) {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.content {
+  position: relative;
+  z-index: 9;
+}
+
+/* Pull “Trusted by” / partners up: theme .hero-header uses 5em + min-h 500px; .p-150 adds 150px padding on small screens. */
+.heroTight {
+  min-height: 0 !important;
+  /* Mobile: nav is in document flow; keep modest top rhythm */
+  padding-top: clamp(1.25rem, 3vw, 2rem) !important;
+  /* Keep minimal — wave + partners sit close; extra space was pushing Trusted by down */
+  padding-bottom: 0 !important;
+  align-items: flex-start !important;
+}
+
+/* Desktop: .header.header-transparent is position:absolute — clear the overlay bar + gap */
+@media (min-width: 992px) {
+  .heroTight {
+    padding-top: max(
+        5.75rem,
+        calc(3.5rem + env(safe-area-inset-top, 0px) + 1.25rem)
+      )
+      !important;
+  }
+}
+
+/*
+ * Theme `styles.css` re-applies .hero-header at 1200px+ (min-height 700–850px, padding 5–6rem).
+ * Local + #home-hero beats that so “Trusted by” is not pushed down by empty hero height.
+ */
+.heroLightGold:global(#home-hero) {
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  padding-top: clamp(1.25rem, 3vw, 2rem) !important;
+  padding-bottom: 0 !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none;
+}
+@media (min-width: 992px) {
+  .heroLightGold:global(#home-hero) {
+    padding-top: max(
+        5.75rem,
+        calc(3.5rem + env(safe-area-inset-top, 0px) + 1.25rem)
+      ) !important;
+  }
+}
+
+/* Partners: flush under wave — 10px below logo row, then “All-in-One NRI Services” */
+.partnersStrip {
+  margin: 0 !important;
+  margin-top: -1px;
+  padding: 10px 0 20px !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  outline: none;
+}
+@media (min-width: 768px) {
+  .partnersStrip {
+    padding: 10px 0 20px !important;
+  }
+}
+
+/* Hero right: height from the image (no min-height) — avoids a tall row that was centering
+   the text column and leaving a blank band under the header */
+.stackImageWrap {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 0 0.75rem;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .stackImageWrap {
+    text-align: center;
+    padding: 0.25rem 0 0;
+  }
+}
+.stackImage {
+  display: block;
+  width: 100%;
+  /* Let the asset scale to column width; only cap for very short viewports */
+  height: auto;
+  max-width: 100%;
+  max-height: min(90vh, 2000px);
+  object-fit: contain;
+  object-position: center center;
+}
+@media (min-width: 1200px) {
+  .stackImage {
+    max-height: min(88vh, 2000px);
+  }
+}

@@ -1,0 +1,255 @@
+/* Hero play button + intro video modal — NRI Suvidha gold / white */
+
+.playBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--maincolor);
+  font-size: 1.35rem;
+  padding-left: 0.2rem;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    0 0 0 6px rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Expanding gold ring (drawn above background, below the play icon) */
+.playBtn::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--maincolor), transparent 15%);
+  background: transparent;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: playRipple 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.playBtn > i {
+  position: relative;
+  z-index: 1;
+}
+
+.playBtn:hover {
+  animation: none;
+  transform: scale(1.06);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    0 0 0 8px color-mix(in srgb, var(--maincolor), transparent 75%);
+}
+
+.playBtn:hover::after {
+  animation: none;
+  opacity: 0;
+}
+
+.playBtn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--maincolor), transparent 40%);
+  outline-offset: 3px;
+}
+
+/* Next to Login / Get Started — balanced vs CTAs (desktop no longer forces 5rem) */
+.playBtnInline {
+  width: 2.7rem;
+  height: 2.7rem;
+  font-size: 0.9rem;
+  padding-left: 0.14rem;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.11),
+    0 0 0 3px rgba(255, 255, 255, 0.25);
+  animation: playBreathe 2.4s ease-in-out infinite;
+}
+
+.playBtnInline::after {
+  border-width: 1.4px;
+  animation-duration: 2s;
+}
+
+.playBtnInline:hover {
+  animation: none;
+  transform: scale(1.08);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.16),
+    0 0 0 4px color-mix(in srgb, var(--maincolor), transparent 72%);
+}
+
+.playBtnInline:hover::after {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes playBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 2px 12px rgba(0, 0, 0, 0.12),
+      0 0 0 3px rgba(255, 255, 255, 0.25),
+      0 0 0 0 color-mix(in srgb, var(--maincolor), transparent 60%);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.14),
+      0 0 0 4px rgba(255, 255, 255, 0.35),
+      0 0 20px color-mix(in srgb, var(--maincolor), transparent 55%);
+  }
+}
+
+.playBtn:not(.playBtnInline) {
+  animation: playBreatheLarge 2.6s ease-in-out infinite;
+}
+
+@keyframes playBreatheLarge {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.12),
+      0 0 0 6px rgba(255, 255, 255, 0.35),
+      0 0 0 0 transparent;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow:
+      0 6px 28px rgba(0, 0, 0, 0.16),
+      0 0 0 8px rgba(255, 255, 255, 0.28),
+      0 0 28px color-mix(in srgb, var(--maincolor), transparent 45%);
+  }
+}
+
+@keyframes playRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.85);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playBtn,
+  .playBtn::after {
+    animation: none !important;
+  }
+
+  .playBtn:hover {
+    transform: none;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 22, 30, 0.72);
+  backdrop-filter: blur(6px);
+  animation: heroVidFadeIn 0.25s ease;
+}
+
+@keyframes heroVidFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(420px, 100%);
+  max-height: min(88vh, 900px);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px color-mix(in srgb, var(--maincolor), transparent 55%);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: var(--maincolor);
+}
+
+.aspect {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: min(88vh, 900px);
+  background: #000;
+}
+
+.aspect iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.caption {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem 0.75rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.72);
+  background: #111;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 768px) {
+  /* Default hero-center play only — inline must stay compact on all breakpoints */
+  .playBtn:not(.playBtnInline) {
+    width: 5rem;
+    height: 5rem;
+    font-size: 1.5rem;
+  }
+
+  .modalBox {
+    width: min(380px, 100%);
+  }
+}

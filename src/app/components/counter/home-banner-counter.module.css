@@ -1,0 +1,121 @@
+/* Hero stats — compact 2×2 */
+
+.heroStatsWrap {
+  margin-top: 1.75rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  align-items: stretch;
+}
+
+.statsItem {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.45rem 0.35rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(3px);
+}
+
+.statValue {
+  font-size: clamp(0.95rem, 2.2vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.12;
+  margin: 0 0 0.2rem;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.04rem 0.12rem;
+  width: 100%;
+}
+
+.ctr {
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  font-weight: 300;
+}
+
+.suffix {
+  color: var(--maincolor);
+  font-weight: 500;
+}
+
+.valueAllGold {
+  color: var(--maincolor);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: center;
+}
+
+.statLabel {
+  margin: 0;
+  max-width: 9rem;
+  font-size: clamp(0.6rem, 1.35vw, 0.72rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.88);
+  text-wrap: balance;
+}
+
+/* Light gold hero — no dark glass */
+.statsItemLight {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 162, 74, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  backdrop-filter: none;
+}
+
+.statsItemLight .statValue {
+  color: #1a1a1a;
+}
+
+.statsItemLight .ctr {
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.statsItemLight .suffix,
+.statsItemLight .valueAllGold {
+  color: var(--maincolor, #0b8260);
+  font-weight: 600;
+}
+
+.statsItemLight .statLabel {
+  color: #4b5563;
+}
+
+@media (max-width: 380px) {
+  .heroStatsWrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.2rem;
+  }
+
+  .statsGrid {
+    min-width: 320px;
+  }
+}

@@ -1,0 +1,74 @@
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  /* soften edges like a ticker */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: partnerMarquee 16s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+@keyframes partnerMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: clamp(0.9rem, 2.2vw, 1.75rem);
+  padding-right: clamp(0.9rem, 2.2vw, 1.75rem);
+}
+
+/* Partner logos — larger readable strip; marquee duplicate is for seamless loop */
+.logoImage {
+  width: auto;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  max-height: clamp(24px, 3.2vw, 36px);
+  opacity: 0.94;
+}
+
+.logoCell {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.staticLogosRow {
+  gap: 0.85rem 1.1rem;
+}
+@media (min-width: 768px) {
+  .staticLogosRow {
+    gap: 1rem 1.4rem;
+  }
+}

@@ -1,0 +1,550 @@
+/* Homepage: About + How we work + Why us — NRI Suvidha gold / white / cream */
+
+.aboutSection,
+.howSection,
+.whySection {
+  --ink: #111827;
+  --muted: #5c6570;
+  --gold: #c9a24a;
+  --gold-mid: #a8893a;
+  --border: rgba(18, 24, 32, 0.08);
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 20px rgba(15, 23, 42, 0.05);
+  --card-shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+}
+
+/* ========== Section shells ========== */
+.aboutSection {
+  position: relative;
+  padding: 2.5rem 0 2.5rem;
+  background: #faf7f1;
+  border: none;
+  overflow: hidden;
+}
+
+/* Subtle top-right wash (suggests map / global reach without a heavy asset) */
+.aboutSection::after {
+  content: "";
+  position: absolute;
+  right: -4%;
+  top: -1rem;
+  width: min(42vw, 22rem);
+  height: min(38vw, 20rem);
+  max-height: 240px;
+  background: radial-gradient(
+    ellipse 70% 60% at 60% 35%,
+    rgba(201, 162, 74, 0.1) 0%,
+    rgba(201, 162, 74, 0.02) 55%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aboutContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.howSection {
+  padding: 2.25rem 0 2.5rem;
+  background: linear-gradient(180deg, #f8f2ee 0%, #fdfbf7 45%, #fff 100%);
+  border: none;
+}
+
+.whySection {
+  padding: 1.25rem 0 1.5rem;
+  background: #fff;
+  border-top: 1px solid rgba(201, 162, 74, 0.12);
+  border-bottom: 1px solid rgba(201, 162, 74, 0.08);
+}
+
+@media (min-width: 768px) {
+  .aboutSection {
+    padding: 3rem 0 2.75rem;
+  }
+  .howSection {
+    padding: 2.5rem 0 3rem;
+  }
+  .whySection {
+    padding: 1.5rem 0 1.75rem;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+/* ========== About: image left (same simple treatment as services / girl5) ========== */
+.aboutImgWrap {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 0;
+}
+
+@media (min-width: 992px) {
+  .aboutImgWrap {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 0.25rem;
+  }
+}
+
+.aboutImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  border: none;
+  box-shadow: none;
+}
+
+/* ========== About: editorial layout (navy + gold) ========== */
+.aboutContent {
+  padding: 0.15rem 0 0.25rem;
+  max-width: 38rem;
+}
+
+@media (min-width: 992px) {
+  .aboutContent {
+    max-width: none;
+  }
+}
+
+/* Outlined “ABOUT US” pill */
+.abBadge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9a7b32;
+  border: 1px solid rgba(201, 162, 74, 0.55);
+  background: rgba(255, 255, 255, 0.65);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  margin: 0 0 0.9rem 0;
+}
+
+.abTitle {
+  font-size: clamp(1.65rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: #0f1b2e;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+}
+
+.abTitleGold {
+  color: #b8923e;
+  font-weight: 800;
+}
+
+.abLead {
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+  font-weight: 700;
+  color: #0f1b2e;
+  line-height: 1.4;
+  margin: 0 0 0;
+}
+
+.abRule {
+  height: 0;
+  margin: 1.15rem 0 1.15rem 0;
+  border: none;
+  border-top: 1px solid rgba(201, 162, 74, 0.4);
+  max-width: 100%;
+}
+
+.abProse {
+  color: #0f1b2e;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.92;
+}
+
+.abProse p {
+  margin: 0 0 0.95rem 0;
+}
+
+.abProse p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Tan goal card + bullseye */
+.goalCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem 1rem;
+  margin: 1.4rem 0 1.15rem 0;
+  padding: 0.9rem 1.05rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, #f0e4d2 0%, #f5ebe0 45%, #faf4ec 100%);
+  border: 1px solid rgba(201, 162, 74, 0.2);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.goalIconWrap {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.45rem;
+  background: #0f1b2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.goalIcon {
+  color: #c9a24a;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.goalCopy {
+  min-width: 0;
+}
+
+.goalKicker {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b6914;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.3;
+}
+
+.goalStatement {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #0f1b2e;
+}
+
+.abFoot {
+  color: #0f1b2e;
+  font-size: 0.93rem;
+  line-height: 1.68;
+  opacity: 0.9;
+  margin: 0 0 0;
+}
+
+/* Four-up feature card */
+.abFeatureCard {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin-top: 1.65rem;
+  background: #fff;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(15, 27, 46, 0.06);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 36px rgba(15, 23, 42, 0.07);
+  padding: 0.4rem 0.15rem 0.65rem;
+  overflow: hidden;
+}
+
+@media (max-width: 767.98px) {
+  .abFeatureCard {
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0.2rem 0.45rem 0.6rem;
+  }
+}
+
+.abFeatureVsep {
+  width: 1px;
+  align-self: stretch;
+  min-height: 4.5rem;
+  margin: 0.5rem 0 0.35rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    #e2e0dc 20%,
+    #e2e0dc 80%,
+    transparent 100%
+  );
+  flex: 0 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  .abFeatureVsep {
+    display: none;
+  }
+}
+
+.abFeatureCol {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  padding: 0.7rem 0.45rem 0.4rem;
+}
+
+@media (max-width: 767.98px) {
+  .abFeatureCol {
+    border-bottom: 1px solid #ece8e1;
+    padding: 0.9rem 0.6rem 0.75rem;
+  }
+  .abFeatureCol:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.abFeatureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #b8923e;
+  margin-bottom: 0.4rem;
+}
+
+.abFeatureTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #0f1b2e;
+  margin: 0 0 0.2rem 0;
+}
+
+.abFeatureDesc {
+  margin: 0;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: #2d3a4d;
+  opacity: 0.88;
+}
+
+/* ========== How we work heading ========== */
+.howHead {
+  text-align: center;
+  max-width: 44rem;
+  margin: 0 auto 1.75rem;
+}
+
+.howTitle {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.howSub {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.howRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.howItem {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .howRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .howItem {
+    flex: 1 1 45%;
+    min-width: min(100%, 20rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .howRow {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+  }
+  .howItem {
+    flex: 1 1 0;
+  }
+}
+
+/* Connector: chevron between step cards, desktop only */
+.stepConnector {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  align-self: center;
+  color: var(--gold);
+  opacity: 0.45;
+  font-size: 0.8rem;
+  min-width: 0.5rem;
+}
+
+@media (min-width: 1200px) {
+  .stepConnector {
+    display: flex;
+  }
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0.95rem 1rem 0.9rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  position: relative;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .stepCard {
+    text-align: left;
+  }
+}
+
+.stepCard::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a24a, #d8b45e);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.stepCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(201, 162, 74, 0.35);
+}
+
+.stepCard:hover::before {
+  opacity: 1;
+}
+
+.stepNumber {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-mid);
+  margin-bottom: 0.4rem;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.6rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(140deg, rgba(201, 162, 74, 0.14) 0%, rgba(201, 162, 74, 0.05) 100%);
+  color: var(--gold);
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1200px) {
+  .iconWrap {
+    margin-left: 0;
+  }
+}
+
+.stepH {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin: 0 0 0.4rem 0;
+}
+
+.stepDesc {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ========== Why choose strip ========== */
+.whyRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem 1.25rem;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .whyRow {
+    justify-content: space-between;
+    text-align: left;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+}
+
+.whyItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+@media (min-width: 768px) {
+  .whyItem {
+    justify-content: flex-start;
+    font-size: 0.86rem;
+  }
+}
+
+.whyCheck {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(201, 162, 74, 0.2) 0%, rgba(201, 162, 74, 0.08) 100%);
+  color: var(--gold);
+  font-size: 0.6rem;
+}
+
+.whyText {
+  line-height: 1.35;
+}

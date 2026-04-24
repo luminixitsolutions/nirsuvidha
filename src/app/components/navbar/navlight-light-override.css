@@ -1,0 +1,114 @@
+/* Home light hero: give the bar room from the viewport top (incl. safe-area) without overlap feeling cramped. */
+.nav-on-light-hero.header {
+  padding-top: max(0.5rem, calc(0.25rem + env(safe-area-inset-top, 0px))) !important;
+  padding-bottom: 0.4rem !important;
+}
+
+/* Home light hero: template .header.header-transparent sets white links; default nav = black. */
+.nav-on-light-hero.header.header-transparent
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li
+  > a {
+  color: #000 !important;
+}
+
+/*
+ * Active / hover / focus must use the FULL selector chain (including .header.header-transparent)
+ * or the #000 rule above wins on specificity and hides the “selected” gold state.
+ */
+.nav-on-light-hero.header.header-transparent
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li:hover
+  > a,
+.nav-on-light-hero.header.header-transparent
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li.active
+  > a,
+.nav-on-light-hero.header.header-transparent
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li.focus
+  > a {
+  color: #c9a24a !important;
+}
+
+/* Login (social row, not the gold CTA button) */
+.nav-on-light-hero.header.header-transparent
+  .nav-menu.nav-menu-social
+  > li:not(.list-buttons)
+  > a {
+  color: #000 !important;
+}
+.nav-on-light-hero.header.header-transparent
+  .nav-menu.nav-menu-social
+  > li:not(.list-buttons):hover
+  > a {
+  color: #c9a24a !important;
+}
+
+/* Logo (text logo fallbacks) */
+.nav-on-light-hero .nav-brand.static-logo .text-white,
+.nav-on-light-hero .nav-brand.static-logo .text-white + small,
+.nav-on-light-hero .nav-brand.static-logo small {
+  color: #1a1a1a !important;
+}
+.nav-on-light-hero .nav-brand .text-main {
+  color: var(--maincolor) !important;
+}
+
+/* Dropdown chevrons */
+.nav-on-light-hero.header.header-transparent .submenu-indicator-chevron {
+  border-color: transparent #1a1a1a #1a1a1a transparent !important;
+}
+.nav-on-light-hero.header.header-transparent
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li:hover
+  > a
+  .submenu-indicator-chevron,
+.nav-on-light-hero.header.header-transparent
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li.active
+  > a
+  .submenu-indicator-chevron {
+  border-color: transparent #c9a24a #c9a24a transparent !important;
+}
+
+/* Mobile slide-out */
+.nav-on-light-hero .navigation-portrait .nav-menus-wrapper .nav-menu > li > a {
+  color: #000 !important;
+}
+.nav-on-light-hero
+  .navigation-portrait
+  .nav-menus-wrapper
+  .nav-menu
+  > li:hover
+  > a,
+.nav-on-light-hero
+  .navigation-portrait
+  .nav-menus-wrapper
+  .nav-menu
+  > .active
+  > a,
+.nav-on-light-hero
+  .navigation-portrait
+  .nav-menus-wrapper
+  .nav-menu
+  > .focus
+  > a {
+  color: #c9a24a !important;
+}
+.nav-on-light-hero .navigation-portrait .nav-menus-wrapper .nav-menu > li.list-buttons > a,
+.nav-on-light-hero .navigation-portrait .nav-menus-wrapper .nav-menu > li.list-buttons > a:hover {
+  color: #fff !important;
+}
+
+/* Gold “Get Started” + icon row */
+.nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a,
+.nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a:hover {
+  color: #fff !important;
+}

@@ -1,0 +1,235 @@
+/* Legal Services hub — polish on top of Bootstrap + theme */
+
+.pageIntro {
+  margin-bottom: 1.75rem;
+}
+
+.pageTitle {
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--headingcolor);
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  font-size: 0.95rem;
+  color: var(--footercolor);
+  max-width: 36rem;
+}
+
+.searchPanel {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 20%);
+  box-shadow:
+    0 4px 24px rgba(15, 22, 30, 0.06),
+    0 1px 2px rgba(15, 22, 30, 0.04);
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.searchPanel:focus-within {
+  border-color: color-mix(in srgb, var(--maincolor), transparent 35%);
+  box-shadow:
+    0 8px 32px rgba(15, 22, 30, 0.1),
+    0 0 0 3px color-mix(in srgb, var(--maincolor), transparent 88%);
+}
+
+.searchInput {
+  border: 0 !important;
+  background: var(--graycolor, #f1f1f1) !important;
+  border-radius: 0.65rem !important;
+  font-size: 1rem !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+.searchInput:focus {
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.sectionHead {
+  margin-bottom: 1.25rem;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maincolor);
+  margin-bottom: 0.35rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--headingcolor);
+  margin-bottom: 0.25rem;
+}
+
+.sectionSub {
+  font-size: 0.9rem;
+  color: var(--footercolor);
+  margin-bottom: 0;
+}
+
+.categoryCard {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 15%) !important;
+  border-radius: 1rem !important;
+  background: #fff;
+  overflow: hidden;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.categoryCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--maincolor),
+    color-mix(in srgb, var(--maincolor), #fff 35%)
+  );
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.categoryCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 44px rgba(15, 22, 30, 0.11) !important;
+  border-color: color-mix(in srgb, var(--maincolor), transparent 65%) !important;
+}
+
+.categoryCard:hover::before {
+  opacity: 1;
+}
+
+.iconBubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--maincolor), transparent 90%);
+  color: var(--maincolor);
+  font-size: 1.2rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--maincolor), transparent 78%);
+}
+
+.caseBadge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--maincolor), transparent 90%);
+  color: color-mix(in srgb, var(--maincolor), #000 25%);
+  border: 1px solid color-mix(in srgb, var(--maincolor), transparent 75%);
+}
+
+.contentCard {
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 15%) !important;
+  border-radius: 1rem !important;
+  background: #fff;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contentCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(15, 22, 30, 0.09) !important;
+}
+
+.sidebarCard {
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 12%) !important;
+  border-radius: 1rem !important;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(15, 22, 30, 0.07) !important;
+  overflow: hidden;
+}
+
+.submitHeader {
+  padding: 1.25rem 1.35rem;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--maincolor), transparent 93%) 0%,
+    #fff 55%
+  );
+  border-bottom: 1px solid color-mix(in srgb, var(--bordercolor), transparent 40%);
+}
+
+.submitHeaderIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--maincolor), transparent 85%);
+  color: var(--maincolor);
+  font-size: 1.25rem;
+}
+
+.uploadZone {
+  border-radius: 0.85rem !important;
+  border-style: dashed !important;
+  border-width: 2px !important;
+  border-color: color-mix(in srgb, var(--maincolor), transparent 65%) !important;
+  background: color-mix(in srgb, var(--maincolor), transparent 96%) !important;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.uploadZone:hover {
+  background: color-mix(in srgb, var(--maincolor), transparent 90%) !important;
+  border-color: color-mix(in srgb, var(--maincolor), transparent 45%) !important;
+  transform: translateY(-1px);
+}
+
+.formControlRounded {
+  border-radius: 0.65rem !important;
+  border-color: color-mix(in srgb, var(--bordercolor), transparent 15%) !important;
+}
+
+.formControlRounded:focus {
+  border-color: color-mix(in srgb, var(--maincolor), transparent 40%) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--maincolor), transparent 88%) !important;
+}
+
+.submitBtn {
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--maincolor), transparent 55%);
+}
+
+.submitBtn:hover {
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--maincolor), transparent 45%);
+}
+
+.stickyRail {
+  top: 6.5rem;
+}
+
+@media (max-width: 991.98px) {
+  .stickyRail {
+    position: static !important;
+  }
+}

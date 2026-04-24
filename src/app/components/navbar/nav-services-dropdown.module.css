@@ -1,0 +1,63 @@
+/* Services mega-style dropdown — icon + title + description */
+
+.servicesList {
+  min-width: min(360px, calc(100vw - 2rem));
+  max-width: 400px;
+  white-space: normal !important;
+  padding: 0.65rem 0.75rem !important;
+}
+
+.svcLink {
+  display: flex !important;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.85rem;
+  float: none !important;
+  width: 100% !important;
+  padding: 12px 14px !important;
+  border-radius: 8px;
+  white-space: normal !important;
+}
+
+.svcLink:hover,
+.svcLink:focus {
+  padding-left: 14px !important;
+  background: rgba(201, 165, 76, 0.08);
+}
+
+.svcIcon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--maincolor), transparent 88%);
+  color: var(--maincolor);
+  font-size: 1.1rem;
+}
+
+.svcBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.svcTitle {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1b2021;
+  line-height: 1.25;
+}
+
+.svcDesc {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.4;
+}

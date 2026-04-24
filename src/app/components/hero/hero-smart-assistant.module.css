@@ -1,0 +1,487 @@
+/* Smart NRI Assistant — multi-step wizard (hero card) */
+
+.heroAssistantCard {
+  max-width: 580px;
+  border-radius: 16px !important;
+  padding: 1.5rem 1.35rem 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Card header (used in page.tsx) */
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.3;
+  margin: 0 0 0.5rem 0;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.cardTitleGold {
+  color: #c9a24a;
+  font-weight: 700;
+}
+
+.cardSubtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.wizard {
+  position: relative;
+  width: 100%;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  margin-bottom: 0.45rem;
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.progressTrack {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  min-width: 120px;
+  height: 5px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e8e4de;
+}
+
+.progressSeg {
+  flex: 1;
+  border-radius: 2px;
+  background: transparent;
+  transition: background 0.25s ease;
+}
+
+.progressSegFill {
+  background: linear-gradient(
+    90deg,
+    #e5c76a 0%,
+    #c9a24a 100%
+  );
+}
+
+.stepMeta {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #6b7280;
+  white-space: normal;
+  line-height: 1.3;
+  max-width: 9.5rem;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.backBtn {
+  border: none;
+  background: rgba(15, 22, 30, 0.05);
+  color: rgba(15, 22, 30, 0.65);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.backBtn:hover {
+  background: rgba(15, 22, 30, 0.09);
+  color: rgba(15, 22, 30, 0.9);
+}
+
+.question {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--headingcolor, #1a1f2b);
+  line-height: 1.35;
+  margin-bottom: 0.55rem;
+  margin-top: 0;
+}
+
+.panel {
+  animation: stepIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes stepIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+
+  .progressSeg {
+    transition: none;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+@media (min-width: 400px) {
+  .gridWide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.gridSingle {
+  grid-template-columns: 1fr;
+}
+
+.optionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  text-align: left;
+  padding: 0.65rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 22, 30, 0.1);
+  background: #fafbfc;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Step 1 service tiles: row + chevron (reference design) */
+.optionCardRow {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  padding: 0.65rem 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e0d8;
+  min-height: 2.75rem;
+}
+
+.optionCardRow:hover {
+  border-color: rgba(201, 162, 74, 0.5);
+  background: #fffcf7;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transform: none;
+}
+
+.optionCardRow .optionLabel {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.83rem;
+  color: #0a0a0a;
+}
+
+.iconWrapRow {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #c9a24a;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: #c9a24a;
+  font-size: 0.7rem;
+  margin-left: auto;
+  opacity: 0.95;
+}
+
+.optionCard:hover:not(.optionCardRow) {
+  border-color: color-mix(in srgb, var(--maincolor), transparent 55%);
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(15, 22, 30, 0.07);
+  transform: translateY(-1px);
+}
+
+.optionCard:focus-visible {
+  outline: 2px solid var(--maincolor);
+  outline-offset: 2px;
+}
+
+.iconWrap {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--maincolor), transparent 88%);
+  color: var(--maincolor);
+  font-size: 0.95rem;
+}
+
+.optionLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--headingcolor, #1a1f2b);
+  line-height: 1.25;
+}
+
+.optionSub {
+  font-size: 0.72rem;
+  color: rgba(15, 22, 30, 0.48);
+  font-weight: 500;
+}
+
+/* Step 1 — eight service cards, equal row heights */
+.gridNeed {
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 420px) {
+  .gridNeed {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Results */
+.resultIntro {
+  font-size: 0.84rem;
+  color: rgba(15, 22, 30, 0.62);
+  line-height: 1.45;
+  margin-bottom: 0.85rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 22, 30, 0.06);
+  color: rgba(15, 22, 30, 0.65);
+}
+
+.recList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.recCard {
+  display: flex;
+  gap: 0.65rem;
+  padding: 0.75rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 165, 76, 0.35);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--maincolor), #fff 94%),
+    #fff
+  );
+}
+
+.recIcon {
+  flex-shrink: 0;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: var(--maincolor);
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(15, 22, 30, 0.06);
+}
+
+.recTitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--headingcolor, #1a1f2b);
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+
+.recBlurb {
+  font-size: 0.76rem;
+  color: rgba(15, 22, 30, 0.58);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.planHint {
+  font-size: 0.78rem;
+  color: rgba(15, 22, 30, 0.55);
+  line-height: 1.45;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(15, 22, 30, 0.04);
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.secondaryBtn {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 22, 30, 0.14);
+  background: #fff;
+  color: rgba(15, 22, 30, 0.75);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--maincolor);
+  color: var(--maincolor);
+}
+
+.restart {
+  margin-top: 0.65rem;
+  text-align: center;
+}
+
+.restartBtn {
+  border: none;
+  background: none;
+  color: rgba(15, 22, 30, 0.45);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.restartBtn:hover {
+  color: var(--maincolor);
+}
+
+.successBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0d7a4f;
+  margin-bottom: 0.5rem;
+}
+
+/* No min-height — fixed height was leaving a large blank band under the progress bar */
+.minBody {
+  min-height: 0;
+  margin-bottom: 0.25rem;
+}
+
+/* Full-width trust strip (light cream) */
+.trustBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 0.5rem;
+  margin: 1rem -1.35rem 0;
+  padding: 0.85rem 1.35rem;
+  background: #f2ebe0;
+  border-top: 1px solid #e3d9ca;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #7a6540;
+  letter-spacing: 0.02em;
+}
+
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+@media (min-width: 481px) {
+  .trustItem + .trustItem {
+    border-left: 1px solid rgba(90, 70, 40, 0.2);
+    padding-left: 0.75rem;
+  }
+}
+
+.trustItem i {
+  color: #9a7b40;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .trustBar {
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: normal;
+  }
+  .trustItem {
+    white-space: normal;
+  }
+  .stepMeta {
+    max-width: none;
+    width: 100%;
+  }
+}

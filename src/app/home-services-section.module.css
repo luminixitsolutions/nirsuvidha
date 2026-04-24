@@ -1,0 +1,110 @@
+/* Home “All-in-One NRI Services” block — warm band, not flat grey */
+
+/* Overrides theme .gray-simple when both passed — warm premium band for home */
+.servicesBand {
+  position: relative;
+  padding: 1.35rem 0 1.75rem;
+  background: #f8f2ee !important;
+  border: none;
+  overflow: hidden;
+}
+
+/* Soft top fade so it eases in from the cream hero / partners */
+.servicesBand::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 162, 74, 0.2),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.head {
+  max-width: 38rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+
+/* Tighter than global .sec-heading { margin-bottom: 2rem } — pull cards up under the subtitle */
+.head :global(.sec-heading) {
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+}
+.head :global(.sec-heading h2) {
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  margin-bottom: 0.25rem !important;
+  margin-top: 0 !important;
+}
+.head :global(.sec-heading p) {
+  line-height: 1.45 !important;
+  margin-top: 0;
+  margin-bottom: 0 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Service grid + figure — no extra top gap under the intro row */
+.servicesLayout {
+  margin-top: 0 !important;
+  padding-top: 0;
+}
+
+@media (min-width: 768px) {
+  .servicesBand {
+    padding: 1.5rem 0 2rem;
+  }
+}
+
+.servicesCol {
+  min-width: 0;
+}
+
+.servicesImageCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .servicesImageCol {
+    align-items: stretch;
+    margin-top: 0;
+  }
+}
+
+.servicesImageWrap {
+  position: relative;
+  width: 100%;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 0;
+}
+
+@media (min-width: 992px) {
+  .servicesImageWrap {
+    max-width: none;
+    margin-top: 0.25rem;
+    /* Slight nudge so the subject sits toward the grid (to the left of this column) */
+    padding-right: 0.25rem;
+  }
+}
+
+.servicesImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}

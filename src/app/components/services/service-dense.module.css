@@ -1,0 +1,382 @@
+/* Service hub pages — refined hierarchy, surfaces, and spacing */
+
+.pageIntro {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--bordercolor), transparent 32%);
+}
+
+.pageTitle {
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 700;
+  color: var(--headingcolor);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.pageSubtitle {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--footercolor);
+  max-width: 40rem;
+}
+
+.iconHeader {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--maincolor), transparent 82%) 0%,
+    color-mix(in srgb, var(--maincolor), transparent 92%) 100%
+  );
+  color: var(--maincolor);
+  font-size: 1.15rem;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--maincolor), transparent 72%),
+    0 6px 18px color-mix(in srgb, var(--maincolor), transparent 88%);
+}
+
+.sectionHead {
+  margin-bottom: 0.875rem;
+}
+
+.sectionKicker {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--maincolor);
+  margin-bottom: 0.35rem;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--headingcolor);
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+
+.sectionTitleInline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.sectionSub {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--footercolor);
+  margin-bottom: 0;
+}
+
+/* Primary content panels */
+.hubPanel {
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 22%) !important;
+  background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--maincolor), #fff 97.5%) 100%);
+  border-radius: 1rem !important;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff, transparent 0%),
+    0 8px 32px rgba(15, 22, 30, 0.06) !important;
+}
+
+.cardBody {
+  padding: 1rem 1.125rem !important;
+}
+
+.cardBodyMd {
+  padding: 1rem 1.125rem !important;
+}
+
+@media (min-width: 768px) {
+  .cardBodyMd {
+    padding: 1.125rem 1.35rem !important;
+  }
+}
+
+.rowDense {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+}
+
+.mbSection {
+  margin-bottom: 1rem;
+}
+
+/* Tab strip — pill bar */
+.tabBar {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 35%);
+  border-radius: 999px;
+  padding: 0.3rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 14px rgba(15, 22, 30, 0.05);
+}
+
+.tabNav :global(.nav-link) {
+  padding: 0.45rem 1rem !important;
+  font-size: 0.875rem !important;
+  border-radius: 999px !important;
+  color: var(--headingcolor);
+  border: 1px solid transparent;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tabNav :global(.nav-link:not(.active):hover) {
+  background: color-mix(in srgb, var(--maincolor), transparent 93%);
+  color: var(--headingcolor);
+}
+
+.tabNav :global(.nav-link.active) {
+  background: var(--maincolor) !important;
+  color: #fff !important;
+  font-weight: 600;
+  border-color: color-mix(in srgb, var(--maincolor), #000 8%) !important;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--maincolor), transparent 55%);
+}
+
+.tabNav :global(.nav-link.active i) {
+  opacity: 1 !important;
+  color: inherit !important;
+}
+
+.iconBubbleSm {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--maincolor), transparent 88%) 0%,
+    color-mix(in srgb, var(--maincolor), transparent 94%) 100%
+  );
+  color: var(--maincolor);
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--maincolor), transparent 75%);
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--footercolor);
+}
+
+.featureList li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-bottom: 0.4rem;
+  line-height: 1.45;
+}
+
+.featureList li:last-child {
+  margin-bottom: 0;
+}
+
+.featureList i {
+  color: var(--maincolor);
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+  flex-shrink: 0;
+}
+
+.tableDense :global(th),
+.tableDense :global(td) {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+  font-size: 0.875rem;
+}
+
+.tableDense :global(thead th) {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--footercolor);
+}
+
+.ctaCard {
+  padding: 1rem 1.25rem !important;
+}
+
+.ctaTitle {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.accordionBtn {
+  padding: 0.75rem 1rem !important;
+  font-size: 0.9rem !important;
+}
+
+.alertCompact {
+  padding: 0.75rem 1rem !important;
+  font-size: 0.875rem !important;
+}
+
+.submitHeaderDense {
+  padding: 0.85rem 1rem !important;
+}
+
+.uploadZoneDense {
+  padding: 1.35rem !important;
+}
+
+.stepBar {
+  height: 7px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--bordercolor), transparent 60%);
+}
+
+/* Stat tiles — FD highlights */
+.statTile {
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 28%);
+  border-radius: 0.9rem;
+  padding: 0.85rem 0.65rem;
+  text-align: center;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.statTile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--maincolor), color-mix(in srgb, var(--maincolor), #fff 45%));
+}
+
+.statTile:hover {
+  border-color: color-mix(in srgb, var(--maincolor), transparent 65%);
+  box-shadow: 0 6px 20px rgba(15, 22, 30, 0.07);
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--maincolor);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  color: var(--footercolor);
+  margin-top: 0.25rem;
+  line-height: 1.35;
+}
+
+/* FD issuer mini-cards */
+.fdIssuer {
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 25%);
+  background: #fff;
+  height: 100%;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.fdIssuer:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--maincolor), transparent 55%);
+  box-shadow: 0 10px 32px rgba(15, 22, 30, 0.09);
+}
+
+.fdInitial {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(145deg, var(--maincolor), color-mix(in srgb, var(--maincolor), #000 12%));
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--maincolor), transparent 50%);
+}
+
+/* Bank selection tiles */
+.bankTile {
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 28%);
+  background: linear-gradient(
+    165deg,
+    #fff 0%,
+    color-mix(in srgb, var(--maincolor), transparent 97%) 100%
+  );
+  height: 100%;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.bankTile:hover {
+  border-color: color-mix(in srgb, var(--maincolor), transparent 50%);
+  box-shadow: 0 8px 28px rgba(15, 22, 30, 0.08);
+}
+
+.bankIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: color-mix(in srgb, var(--maincolor), transparent 88%);
+  color: var(--maincolor);
+  font-size: 1.05rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--maincolor), transparent 75%);
+}
+
+/* Inset form panel */
+.formInset {
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--maincolor), transparent 94%);
+  border: 1px solid color-mix(in srgb, var(--maincolor), transparent 85%);
+  padding: 1rem 1.15rem;
+  margin-top: 0.75rem;
+}
+
+.formInsetTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--headingcolor);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* CTA strip shell (gradient may be inline for theme) */
+.ctaStrip {
+  box-shadow: 0 8px 32px rgba(15, 22, 30, 0.07);
+}
