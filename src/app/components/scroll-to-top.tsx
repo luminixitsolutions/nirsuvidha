@@ -24,7 +24,7 @@ export default function ScrollToTop() {
 
   return (
     <>
-     <Link id="back2Top" onClick={()=>scrollToTop()} className={`top-scroll ${scroll ? 'd-block' : 'd-none'}`}  title="Back to top" href="#"><i className="fa fa-arrow-up"></i></Link>   
+     <Link id="back2Top" onClick={()=>scrollToTop()} className={`top-scroll ${scroll ? 'd-block' : 'd-none'}`}  title="Back to top" href="#"><i className="fa-solid fa-arrow-up" aria-hidden /></Link>   
     </>
   )
 }

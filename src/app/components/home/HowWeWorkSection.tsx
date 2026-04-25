@@ -68,7 +68,11 @@ export default function HowWeWorkSection() {
               </div>
               {index < steps.length - 1 && (
                 <div className={styles.stepConnector} aria-hidden>
-                  <i className="fa-solid fa-chevron-right" />
+                  <i
+                    className="fa-solid fa-chevron-right"
+                    style={{ fontSize: '1.25rem', color: '#d4a83f' }}
+                    aria-hidden
+                  />
                 </div>
               )}
             </Fragment>

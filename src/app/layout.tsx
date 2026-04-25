@@ -1,6 +1,7 @@
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/css/icon-surface.css'
 import './assets/css/styles.css'
 import './assets/css/colors.css'
 import './tailwind-base.css'
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
   description:
     "NRI Suvidha is a financial super-app designed for NRIs and OCIs to manage legal, banking, investment, tax, and property services in India from anywhere in the world.",
   icons: {
-    icon: [{ url: "/img/favicon.png", type: "image/png" }],
-    apple: "/img/favicon.png",
+    icon: [{ url: "/icons/favicon.png", type: "image/png" }],
+    apple: "/icons/favicon.png",
   },
 };
 

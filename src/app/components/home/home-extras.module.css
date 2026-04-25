@@ -469,7 +469,7 @@
   border-radius: 0.65rem;
   background: linear-gradient(140deg, rgba(201, 162, 74, 0.14) 0%, rgba(201, 162, 74, 0.05) 100%);
   color: var(--gold);
-  font-size: 1.05rem;
+  font-size: 1.25rem; /* match ~ w-5 h-5 glyph for FA */
   flex-shrink: 0;
 }
 

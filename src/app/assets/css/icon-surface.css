@@ -1,0 +1,25 @@
+/* Font Awesome + Bootstrap Icons: keep glyphs visible in production (Vercel) */
+#nri-app i[class*="fa-"],
+#nri-app i.fas,
+#nri-app i.far,
+#nri-app i.fab,
+#nri-app i.fal,
+#nri-app i.fa,
+#nri-app i[class^="bi-"],
+#nri-app i.bi {
+  line-height: 1;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+#nri-app .nav-menu-social a i,
+#nri-app .top-scroll i {
+  color: #d4a83f;
+  font-size: 1.125rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  text-align: center;
+  vertical-align: -0.125em;
+}
