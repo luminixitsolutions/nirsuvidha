@@ -159,7 +159,7 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1080;
+  z-index: 22000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,6 +167,21 @@
   background: rgba(15, 22, 30, 0.72);
   backdrop-filter: blur(6px);
   animation: heroVidFadeIn 0.25s ease;
+}
+
+@media (max-width: 767.98px) {
+  .backdrop {
+    align-items: flex-start;
+    padding-top: max(1rem, calc(env(safe-area-inset-top, 0px) + 4.25rem));
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  .modalBox {
+    width: min(380px, 100%);
+    max-height: calc(100dvh - max(1.5rem, calc(env(safe-area-inset-top, 0px) + 4.75rem)));
+  }
 }
 
 @keyframes heroVidFadeIn {

@@ -154,4 +154,20 @@
 .nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a,
 .nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a:hover {
   color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  line-height: 1;
+}
+.nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a > i,
+.nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a > .bi,
+.nav-on-light-hero .nav-menu.nav-menu-social > li.list-buttons > a > .fas {
+  color: #ffffff !important;
+  transform: none !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: 1 !important;
+  display: inline-flex;
+  align-items: center;
 }
