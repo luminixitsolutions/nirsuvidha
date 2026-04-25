@@ -9,7 +9,7 @@ import {
 
 export default function SubscribeTwo() {
   return (
-    <section className="bg-cover call-action-container dark bg-main" style={{backgroundImage:`url('/img/footer-bg-dark.png')`, backgroundRepeat:'no-repeat', backgroundColor:'#016551'}}>
+    <section id="contact" className="bg-cover call-action-container dark bg-main" style={{backgroundImage:`url('/img/footer-bg-dark.png')`, backgroundRepeat:'no-repeat', backgroundColor:'#016551'}}>
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12">
@@ -21,8 +21,8 @@ export default function SubscribeTwo() {
                         </div>
                         <div className="call-action-form">
                             <div className="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-                                <Link href="/signup" className="btn btn-light px-4">{ctaPrimaryButton}</Link>
-                                <Link href="/contact" className="btn btn-outline-light px-4">{ctaSecondaryButton}</Link>
+                                <Link href="/#services" className="btn btn-light px-4">{ctaPrimaryButton}</Link>
+                                <Link href="/#contact" className="btn btn-outline-light px-4">{ctaSecondaryButton}</Link>
                             </div>
                         </div>
                     </div>

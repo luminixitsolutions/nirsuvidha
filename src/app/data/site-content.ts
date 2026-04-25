@@ -125,55 +125,10 @@ export const legalPropertyAndTransfer = [
   'All Post Demise Services',
 ]
 
-/** Routes treated as “Services” area for nav active state */
-export const serviceBrowsePaths: string[] = [
-  '/grid-style-1',
-  '/grid-style-2',
-  '/grid-style-3',
-  '/grid-style-4',
-  '/grid-style-5',
-  '/full-job-grid-1',
-  '/full-job-grid-2',
-  '/list-style-1',
-  '/list-style-2',
-  '/list-style-3',
-  '/full-job-list-1',
-  '/full-job-list-2',
-  '/half-map',
-  '/half-map-2',
-  '/half-map-3',
-  '/half-map-list-1',
-  '/half-map-list-2',
-  '/advance-search',
-  '/service-detail',
-  '/legal-services',
-  '/finance-services',
-  '/investment-services',
-  '/taxation-services',
-  '/business-consulting',
-  '/real-estate-services',
-  '/all-services',
-  '/legal-document-generator',
-  '/property-verification',
-  '/legal-consultation-booking',
-  '/subscription-plans',
-]
+/** Routes treated as “Services” area for nav active state (single-page site) */
+export const serviceBrowsePaths: string[] = []
 
-export const homePaths = [
-  '/',
-  '/home-2',
-  '/home-3',
-  '/home-4',
-  '/home-5',
-  '/home-6',
-  '/home-7',
-  '/home-8',
-  '/home-9',
-  '/home-10',
-  '/home-11',
-  '/home-12',
-  '/slider-home',
-]
+export const homePaths = ['/']
 
 /** Terminology replacements (display strings) */
 export const labels = {

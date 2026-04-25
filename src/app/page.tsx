@@ -61,8 +61,8 @@ export default async function Home() {
                         </h1>
                         <p className={`mb-4 ${goldHero.heroSub}`}>{h.heroSubtitle}</p>
                         <div className="d-flex flex-wrap align-items-center gap-3 gap-md-5 mb-4">
-                            <Link href="/signup" className="btn btn-main px-4">{h.heroPrimaryCta}</Link>
-                            <Link href="/login" className="btn btn-outline-main px-4">{h.heroSecondaryCta}</Link>
+                            <Link href="/#services" className="btn btn-main px-4">{h.heroPrimaryCta}</Link>
+                            <Link href="/#contact" className="btn btn-outline-main px-4">{h.heroSecondaryCta}</Link>
                             <HeroVideoModal variant="inline" />
                         </div>
                         <div className={counterStyles.heroStatsWrap}>

@@ -23,7 +23,7 @@ export default function CategoryTwo({ border: _border }: { border: boolean }) {
         >
           <Link
             className={styles.serviceCard}
-            href={item.href ?? '/advance-search'}
+            href={item.href ?? '/#services'}
           >
             <span className={styles.iconWrap} aria-hidden>
               <i className={item.icon} />
