@@ -55,12 +55,12 @@ export default function MainNavMenu({ menu }: Props) {
 
       <ul className="nav-menu nav-menu-social align-to-right">
         <li>
-          <Link href="/#services">
+          <Link href="/login">
             <i className="fas fa-sign-in-alt me-2"></i>Login
           </Link>
         </li>
         <li className="list-buttons ms-2">
-          <Link href="/#services">
+          <Link href="/signup">
             <i className="bi bi-person-circle me-2"></i>Get Started
           </Link>
         </li>
