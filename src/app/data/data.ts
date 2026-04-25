@@ -631,7 +631,7 @@ export const blogData = [
     {
         id:2,
         image:'/img/blog-4.jpg',
-        title:'Want To Earn Money with NRI Suvidha?',
+        title:'How To Get Started with NRI Suvidha Services',
         desc:`Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat`,
         date:'17 Jan 2024'
     },
