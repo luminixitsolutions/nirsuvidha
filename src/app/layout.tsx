@@ -7,6 +7,7 @@ import './assets/css/colors.css'
 import './tailwind-base.css'
 import { Metadata } from 'next'
 import HelpWidget from './components/help/HelpWidget'
+import DisableDevShortcuts from './components/disable-dev-shortcuts'
 
 const JakartaSans = Plus_Jakarta_Sans({
   weight: ['200','300','400','500','600','700','800'],
@@ -35,6 +36,7 @@ export default function RootLayout({
      <html lang="en" className={`${JakartaSans.variable}`}>
       <body>
         <div id="nri-app">
+          <DisableDevShortcuts />
           {children}
           <HelpWidget />
         </div>
