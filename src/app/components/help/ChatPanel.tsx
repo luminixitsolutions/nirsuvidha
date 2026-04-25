@@ -65,7 +65,7 @@ export function ChatPanel({
   return (
     <>
       <div
-        className="fixed inset-0 z-[999] bg-slate-900/30 backdrop-blur-[2px] transition-all duration-300 ease-out"
+        className="fixed inset-0 z-[21000] bg-slate-900/30 backdrop-blur-[2px] transition-all duration-300 ease-out"
         style={{
           opacity: isOpen ? 1 : 0,
           pointerEvents: isOpen ? "auto" : "none",
@@ -74,7 +74,7 @@ export function ChatPanel({
         onClick={onClose}
       />
       <aside
-        className="fixed z-[1000] flex h-full w-full max-w-full flex-col bg-nri-cream text-slate-800 shadow-2xl transition-all duration-300 ease-out [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] sm:bottom-0 sm:left-auto sm:right-0 sm:top-0 sm:max-w-[min(100vw,400px)]"
+        className="fixed inset-0 z-[21001] flex h-full w-full max-w-full flex-col bg-nri-cream text-slate-800 shadow-2xl transition-all duration-300 ease-out [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-[min(100vw,400px)]"
         style={{
           transform: isOpen ? "translate3d(0,0,0)" : "translate3d(100%,0,0)",
           pointerEvents: isOpen ? "auto" : "none",
