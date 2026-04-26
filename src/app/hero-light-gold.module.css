@@ -23,6 +23,12 @@
   font-size: 50px !important;
 }
 
+@media (max-width: 767.98px) {
+  .heroTitle {
+    font-size: 35px !important;
+  }
+}
+
 /* Brand gold accent (matches premium light theme) */
 .heroTitleGold {
   color: #c9a24a;
