@@ -18,7 +18,7 @@ export default function CategoryTwo({ border: _border }: { border: boolean }) {
     >
       {categoryData.map((item: Category, index: number) => (
         <div
-          className={`col-xl-3 col-lg-3 col-md-4 col-sm-6 ${styles.serviceCol}`}
+          className={`col-6 col-md-4 col-lg-3 col-xl-3 ${styles.serviceCol}`}
           key={item.href ?? `cat-${index}`}
         >
           <Link
