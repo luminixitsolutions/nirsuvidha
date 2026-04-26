@@ -132,7 +132,7 @@ export default async function Home() {
                         <CategoryTwo border={false} />
                     </div>
                     <div
-                      className={`col-12 col-lg-5 col-xl-4 order-2 ${homeServices.servicesImageCol}`}
+                      className={`col-12 col-lg-5 col-xl-4 order-2 d-none d-lg-flex ${homeServices.servicesImageCol}`}
                     >
                         <div className={homeServices.servicesImageWrap}>
                             <Image
