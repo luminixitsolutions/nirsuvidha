@@ -295,13 +295,13 @@ html body .mdi-set {
   line-height: initial;
 }
 section{
-	padding:80px 0 80px;
+	padding:40px 0 40px;
 }
 section.min{
 	padding:10px 0 10px;
 }
 section.mid{
-	padding:80px 0 50px;
+	padding:40px 0 25px;
 }
 p {
     line-height:1.8;
