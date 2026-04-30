@@ -55,6 +55,41 @@ export function getLaravelPublicOrigin(): string {
   }
 }
 
+/**
+ * CMS / storage URLs from Laravel: may be absolute with loopback host, or relative (`/storage/...`).
+ * Browsers on Vercel cannot load 127.0.0.1; relative paths would hit the Next origin by mistake.
+ */
+export function resolvePublicMediaUrl(raw: string | null | undefined): string {
+  if (raw == null) return ''
+  const s = String(raw).trim()
+  if (!s) return ''
+
+  const origin = getLaravelPublicOrigin()
+
+  if (s.startsWith('http://') || s.startsWith('https://')) {
+    try {
+      const u = new URL(s)
+      const h = u.hostname.toLowerCase()
+      if (
+        h === 'localhost' ||
+        h === '127.0.0.1' ||
+        h === '::1' ||
+        h === '[::1]'
+      ) {
+        return `${origin}${u.pathname}${u.search}${u.hash}`
+      }
+      return s
+    } catch {
+      return s
+    }
+  }
+
+  if (s.startsWith('/')) {
+    return `${origin}${s}`
+  }
+  return `${origin}/${s}`
+}
+
 export function buildApiUrl(path: string): string {
   const baseUrl = API_BASE_URL.replace(/\/$/, '')
   const cleanPath = path.startsWith('/') ? path : `/${path}`

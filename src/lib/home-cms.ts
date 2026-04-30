@@ -1,3 +1,4 @@
+import { resolvePublicMediaUrl } from '@/lib/api'
 import { fetchPublicJson } from '@/lib/public-api'
 
 type CmsRow = { id: number; section: string; key: string; value: string | null }
@@ -143,9 +144,11 @@ export async function getHomeCms(): Promise<HomeCms> {
       (s) => s.active !== false,
     ),
     whyChoosePoints: parseJsonArray<string>(m.get('why_choose_points_json') ?? null),
-    heroRightImage: pickOptional(m, 'hero_right_image'),
-    servicesSectionImage: pickOptional(m, 'services_section_image'),
-    aboutSectionImage: pickOptional(m, 'about_section_image'),
+    heroRightImage: resolvePublicMediaUrl(pickOptional(m, 'hero_right_image')),
+    servicesSectionImage: resolvePublicMediaUrl(
+      pickOptional(m, 'services_section_image'),
+    ),
+    aboutSectionImage: resolvePublicMediaUrl(pickOptional(m, 'about_section_image')),
   }
 }
 
