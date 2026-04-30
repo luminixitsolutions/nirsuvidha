@@ -45,14 +45,19 @@ export default function SubmitCaseForm({ serviceId }: Props) {
       if (file) {
         fd.append('document', file)
       }
-      const { ok, data: json } = await apiFetchAlwaysJson<{
+      const { ok, status, data: json } = await apiFetchAlwaysJson<{
         message?: string
       }>('/api/public/service-case-submissions', {
         method: 'POST',
         body: fd,
       })
       if (!ok) {
-        toast.error(json?.message || 'Could not submit. Try again.')
+        toast.error(
+          json?.message ||
+            (status
+              ? `Could not submit (HTTP ${status}).`
+              : 'Network error. Try again.'),
+        )
         return
       }
       toast.success(json?.message || 'Case submitted.')

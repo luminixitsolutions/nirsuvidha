@@ -131,7 +131,7 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
 export async function apiFetchAlwaysJson<T = unknown>(
   path: string,
   options: RequestInit = {},
-): Promise<{ ok: boolean; data: T | null }> {
+): Promise<{ ok: boolean; status: number; data: T | null }> {
   const baseUrl = getPublicApiBaseUrl().replace(/\/$/, '')
   const cleanPath = path.startsWith('/') ? path : `/${path}`
   try {
@@ -140,8 +140,8 @@ export async function apiFetchAlwaysJson<T = unknown>(
       cache: 'no-store',
     })
     const data = (await res.json().catch(() => null)) as T | null
-    return { ok: res.ok, data }
+    return { ok: res.ok, status: res.status, data }
   } catch {
-    return { ok: false, data: null }
+    return { ok: false, status: 0, data: null }
   }
 }

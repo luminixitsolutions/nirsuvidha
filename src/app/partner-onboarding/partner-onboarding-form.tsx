@@ -78,7 +78,7 @@ export default function PartnerOnboardingForm() {
     setSubmitting(true)
     try {
       const fd = partnerFormToFormData(partnerType, f)
-      const { ok, data } = await apiFetchAlwaysJson<{
+      const { ok, status, data } = await apiFetchAlwaysJson<{
         message?: string
         description?: string
         errors?: Record<string, string[] | string>
@@ -90,7 +90,9 @@ export default function PartnerOnboardingForm() {
         const msg =
           (data?.message as string) ||
           (data?.errors && Object.values(data.errors).flat().join(' ')) ||
-          'Submission failed.'
+          (status
+            ? `Submission failed (HTTP ${status}). If this persists, the server may be blocking cross-origin requests (CORS).`
+            : 'Network error — could not reach the server.')
         toast.error(msg)
         if (data?.errors && typeof data.errors === 'object') {
           const flat: Record<string, string> = {}
