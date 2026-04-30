@@ -9,6 +9,8 @@ import SubmitCaseForm from './submit-case-form'
 import BankingServiceDetail from './banking-service-detail'
 import styles from './service-detail.module.css'
 
+export const dynamic = 'force-dynamic'
+
 type PageProps = {
   params: Promise<{ slug: string }>
 }

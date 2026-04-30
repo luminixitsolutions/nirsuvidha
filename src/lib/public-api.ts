@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from 'next/cache'
 import { apiFetch } from '@/lib/api'
 
 /**
@@ -7,6 +8,7 @@ export async function fetchPublicJson<T>(
   path: string,
   init?: RequestInit,
 ): Promise<T | null> {
+  noStore()
   const p = `/api/public${path.startsWith('/') ? path : `/${path}`}`
   const data = await apiFetch(p, {
     ...init,

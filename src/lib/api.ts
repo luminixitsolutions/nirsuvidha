@@ -31,8 +31,13 @@ function resolveApiBaseUrl(): string {
 
 export const API_BASE_URL = resolveApiBaseUrl()
 
+/**
+ * Base URL for authenticated admin JSON API (`/admin/services`, `/admin/cms`, …).
+ */
 export function getAdminApiBaseUrl(): string {
-  return API_BASE_URL.replace(/\/$/, '')
+  const base = API_BASE_URL.replace(/\/$/, '')
+  if (base.endsWith('/admin')) return base
+  return `${base}/admin`
 }
 
 /**
@@ -53,6 +58,13 @@ export function getLaravelPublicOrigin(): string {
   } catch {
     return 'https://luminixprojects.in/nrisuvidha/public'
   }
+}
+
+/**
+ * Laravel `public` URL (with `index.php`). Public JSON routes are `{getPublicApiBaseUrl()}/api/public/*`.
+ */
+export function getPublicApiBaseUrl(): string {
+  return getLaravelPublicOrigin()
 }
 
 /**
@@ -91,13 +103,13 @@ export function resolvePublicMediaUrl(raw: string | null | undefined): string {
 }
 
 export function buildApiUrl(path: string): string {
-  const baseUrl = API_BASE_URL.replace(/\/$/, '')
+  const baseUrl = getPublicApiBaseUrl().replace(/\/$/, '')
   const cleanPath = path.startsWith('/') ? path : `/${path}`
   return `${baseUrl}${cleanPath}`
 }
 
 export async function apiFetch(path: string, options: RequestInit = {}) {
-  const baseUrl = API_BASE_URL.replace(/\/$/, '')
+  const baseUrl = getPublicApiBaseUrl().replace(/\/$/, '')
   const cleanPath = path.startsWith('/') ? path : `/${path}`
 
   try {
@@ -120,7 +132,7 @@ export async function apiFetchAlwaysJson<T = unknown>(
   path: string,
   options: RequestInit = {},
 ): Promise<{ ok: boolean; data: T | null }> {
-  const baseUrl = API_BASE_URL.replace(/\/$/, '')
+  const baseUrl = getPublicApiBaseUrl().replace(/\/$/, '')
   const cleanPath = path.startsWith('/') ? path : `/${path}`
   try {
     const res = await fetch(`${baseUrl}${cleanPath}`, {
