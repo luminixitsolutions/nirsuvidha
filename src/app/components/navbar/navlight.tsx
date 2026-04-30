@@ -2,11 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import type { PublicService } from '@/lib/public-services'
 import NavBrand from './nav-brand'
 import MainNavMenu from './main-nav-menu'
 import './navlight-light-override.css'
 
-export default function Navlight() {
+type Props = {
+  /** Pass from server (Laravel) so the Services menu matches the home grid. */
+  serviceItems?: PublicService[] | null
+}
+
+export default function Navlight({ serviceItems }: Props) {
     let [toggle, setToggle] = useState<boolean>(false);
     let [scroll,setScroll] = useState<boolean>(false);
     let [menu, setMenu] = useState<string>('');
@@ -61,7 +67,7 @@ export default function Navlight() {
                     </div>
                     <div className={`nav-menus-wrapper ${toggle ? 'nav-menus-wrapper-open' : ''}`}>
                         <span className="nav-menus-wrapper-close-button" onClick={()=>setToggle(!toggle)}>✕</span>
-                        <MainNavMenu menu={menu} />
+                        <MainNavMenu menu={menu} serviceItems={serviceItems} />
                     </div>
                 </nav>
             </div>

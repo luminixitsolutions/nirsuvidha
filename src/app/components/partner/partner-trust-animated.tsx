@@ -8,37 +8,83 @@ import {
   partnerTrustedByLabel,
 } from '../../data/site-content'
 import { partnerLogoSrcs } from './partner-one'
+import {
+  getTrustedPartnerLogoSrc,
+  type PublicTrustedPartner,
+} from '@/lib/public-trusted-partners'
 import layoutStyles from './partner-trust-animated.module.css'
 import styles from './partner-marquee.module.css'
 
 const ROTATE_MS = 4200
 const FADE_MS = 320
 
-function LogoGroup({ instanceId }: { instanceId: string }) {
+type LogoItem = { src: string; alt: string; key: string }
+
+function buildLogoItems(partners: PublicTrustedPartner[] | null | undefined): LogoItem[] {
+  if (partners && partners.length > 0) {
+    return partners.map((p, i) => ({
+      key: `tp-${p.id}`,
+      src: getTrustedPartnerLogoSrc(p.logo, i),
+      alt: p.name,
+    }))
+  }
+  return partnerLogoSrcs.map((src, i) => ({
+    key: `st-${i}`,
+    src,
+    alt: 'Partner logo',
+  }))
+}
+
+function LogoGroup({
+  instanceId,
+  items,
+}: {
+  instanceId: string
+  items: LogoItem[]
+}) {
   return (
     <>
-      {partnerLogoSrcs.map((src, index) => (
-        <div
-          key={`${instanceId}-${index}-${src}`}
-          className={styles.logoCell}
-        >
-          <figure className="single-brand thumb-figure mb-0">
-            <Image
-              src={src}
-              width={0}
-              height={0}
-              sizes="120px"
-              className={`img-fluid ${styles.logoImage}`}
-              alt="Partner logo"
-            />
-          </figure>
-        </div>
-      ))}
+      {items.map((item) => {
+        const isRemote = item.src.startsWith('http')
+        return (
+          <div
+            key={`${instanceId}-${item.key}`}
+            className={styles.logoCell}
+          >
+            <figure className="single-brand thumb-figure mb-0">
+              {isRemote ? (
+                <img
+                  src={item.src}
+                  className={`img-fluid ${styles.logoImage}`}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <Image
+                  src={item.src}
+                  width={0}
+                  height={0}
+                  sizes="120px"
+                  className={`img-fluid ${styles.logoImage}`}
+                  alt={item.alt}
+                />
+              )}
+            </figure>
+          </div>
+        )
+      })}
     </>
   )
 }
 
-export default function PartnerTrustAnimated() {
+type Props = {
+  partners?: PublicTrustedPartner[] | null
+}
+
+export default function PartnerTrustAnimated({ partners }: Props) {
+  const logoItems = buildLogoItems(partners)
+
   const [headlineIndex, setHeadlineIndex] = useState(0)
   const [headlineVisible, setHeadlineVisible] = useState(true)
   const [reduceMotion, setReduceMotion] = useState(false)
@@ -94,16 +140,16 @@ export default function PartnerTrustAnimated() {
         <div
           className={`d-flex flex-wrap align-items-center justify-content-center px-1 ${layoutStyles.logos} ${styles.staticLogosRow}`}
         >
-          <LogoGroup instanceId="static" />
+          <LogoGroup instanceId="static" items={logoItems} />
         </div>
       ) : (
         <div className={`${styles.viewport} ${layoutStyles.logos}`}>
           <div className={styles.track}>
             <div className={styles.group}>
-              <LogoGroup instanceId="a" />
+              <LogoGroup instanceId="a" items={logoItems} />
             </div>
             <div className={styles.group} aria-hidden>
-              <LogoGroup instanceId="b" />
+              <LogoGroup instanceId="b" items={logoItems} />
             </div>
           </div>
         </div>

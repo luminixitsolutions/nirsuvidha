@@ -15,6 +15,9 @@ import SubscribeTwo from "./components/subscribe/subscribe-two";
 import FooterOne from "./components/footer/footer-one";
 import ScrollToTop from "./components/scroll-to-top";
 import { getHomeCms } from "@/lib/home-cms";
+import { getPublicServices } from "@/lib/public-services";
+import { getPublicTestimonials } from "@/lib/public-testimonials";
+import { getPublicTrustedPartners } from "@/lib/public-trusted-partners";
 import goldHero from "./hero-light-gold.module.css";
 import homeServices from "./home-services-section.module.css";
 import AboutStackSection from "./components/home/AboutStackSection";
@@ -23,9 +26,12 @@ import WhyChooseStrip from "./components/home/WhyChooseStrip";
 
 export default async function Home() {
   const h = await getHomeCms();
+  const serviceItems = await getPublicServices();
+  const testimonialItems = await getPublicTestimonials();
+  const trustedByPartners = await getPublicTrustedPartners();
   return (
       <>
-        <Navlight/>
+        <Navlight serviceItems={serviceItems} />
 
         <div
           id="home-hero"
@@ -51,7 +57,7 @@ export default async function Home() {
                     <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 pe-lg-3">
                         <div className={`${heroBadgeStyles.eyebrowPillLight} mb-3`}>
                           <span className={heroBadgeStyles.eyebrowDash} aria-hidden="true" />
-                          <HeroBadgeAnimated />
+                          <HeroBadgeAnimated lines={h.heroBadgeLines} />
                         </div>
                         <h1 className={`mb-3 ${goldHero.heroTitle}`}>
                           {h.heroTitleBeforeGold}
@@ -90,11 +96,13 @@ export default async function Home() {
                         </div>
                         */}
                         <figure className={`w-100 mb-0 ${goldHero.stackImageWrap}`}>
+                            {h.heroRightImage ? (
                             <img
-                                src="/img/back1.png"
+                                src={h.heroRightImage}
                                 className={`w-100 ${goldHero.stackImage} rounded`}
                                 alt=""
                             />
+                            ) : null}
                         </figure>
                     </div>
                 </div>
@@ -103,7 +111,7 @@ export default async function Home() {
 
         <section id="partners" className={goldHero.partnersStrip}>
             <div className="container">
-                <PartnerTrustAnimated/>
+                <PartnerTrustAnimated partners={trustedByPartners} />
             </div>
         </section>
         <div className="clearfix"></div>
@@ -129,21 +137,24 @@ export default async function Home() {
                     <div
                       className={`col-12 col-lg-7 col-xl-8 order-1 ${homeServices.servicesCol}`}
                     >
-                        <CategoryTwo border={false} />
+                        <CategoryTwo border={false} items={serviceItems} />
                     </div>
                     <div
                       className={`col-12 col-lg-5 col-xl-4 order-2 d-none d-lg-flex ${homeServices.servicesImageCol}`}
                     >
                         <div className={homeServices.servicesImageWrap}>
+                            {h.servicesSectionImage ? (
                             <Image
-                                src="/img/girl5.png"
+                                src={h.servicesSectionImage}
                                 width={880}
                                 height={1022}
                                 className={homeServices.servicesImage}
                                 sizes="(min-width: 1200px) 33vw, (min-width: 992px) 40vw, 60vw"
                                 alt="Service guide highlighting NRI service categories"
+                                unoptimized
                                 priority={false}
                             />
+                            ) : null}
                         </div>
                     </div>
                 </div>
@@ -200,9 +211,25 @@ export default async function Home() {
         </section>
         */}
 
-        <AboutStackSection />
-        <HowWeWorkSection />
-        <WhyChooseStrip />
+        <AboutStackSection
+          aboutBadge={h.aboutBadge}
+          aboutTitleBefore={h.aboutTitleBefore}
+          aboutTitleGold={h.aboutTitleGold}
+          aboutLead={h.aboutLead}
+          aboutP1={h.aboutP1}
+          aboutP2={h.aboutP2}
+          aboutGoalKicker={h.aboutGoalKicker}
+          aboutGoalStatement={h.aboutGoalStatement}
+          aboutFoot={h.aboutFoot}
+          aboutFeatures={h.aboutFeatures}
+          aboutSectionImage={h.aboutSectionImage || undefined}
+        />
+        <HowWeWorkSection
+          title={h.howWorkTitle}
+          subtitle={h.howWorkSubtitle}
+          steps={h.howWorkSteps}
+        />
+        <WhyChooseStrip points={h.whyChoosePoints} />
         <div className="clearfix"></div>
 
         {/*
@@ -254,7 +281,7 @@ export default async function Home() {
                         </div>
                     </div>
                 </div>
-              <ClientOne/>
+              <ClientOne items={testimonialItems} />
             </div>	
         </section>
 

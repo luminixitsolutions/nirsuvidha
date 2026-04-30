@@ -19,45 +19,22 @@ export type TextStat = {
 
 type HomeBannerCounterProps = {
   variant?: 'default' | 'light'
-  /** When set (e.g. from admin CMS), overrides the built-in stats */
-  items?: (CountStat | TextStat)[]
+  /** From Laravel CMS; when empty, block is hidden. */
+  items: (CountStat | TextStat)[]
 }
-
-const defaultStats: (CountStat | TextStat)[] = [
-  {
-    kind: 'count',
-    title: 'Global Indians served',
-    end: 50,
-    suffix: 'K+',
-  },
-  {
-    kind: 'text',
-    title: 'India remittances',
-    value: '₹2500Cr+',
-  },
-  {
-    kind: 'count',
-    title: 'Countries supported',
-    end: 100,
-    suffix: '+',
-  },
-  {
-    kind: 'text',
-    title: 'User rating',
-    value: '4.9★',
-  },
-]
 
 export default function HomeBannerCounter({
   variant = 'default',
   items,
 }: HomeBannerCounterProps) {
-  const stats = items && items.length > 0 ? items : defaultStats
+  if (items.length === 0) {
+    return null
+  }
   const itemClass =
     variant === 'light' ? styles.statsItemLight : styles.statsItem
   return (
     <ul className={styles.statsGrid}>
-      {stats.map((item, index) => (
+      {items.map((item, index) => (
         <li key={index} className={itemClass}>
           <div className={styles.statValue}>
             {item.kind === 'count' ? (

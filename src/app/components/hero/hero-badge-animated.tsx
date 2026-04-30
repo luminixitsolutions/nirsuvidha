@@ -1,12 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { heroBadgeLines } from '../../data/site-content'
 import styles from './hero-badge-animated.module.css'
 
 const ROTATE_MS = 4000
 
-export default function HeroBadgeAnimated() {
+type Props = {
+  /** From Laravel CMS; when empty, nothing is shown. */
+  lines: string[]
+}
+
+export default function HeroBadgeAnimated({ lines }: Props) {
   const [index, setIndex] = useState(0)
   const [hasRotated, setHasRotated] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
@@ -19,18 +23,21 @@ export default function HeroBadgeAnimated() {
   }, [])
 
   useEffect(() => {
-    if (reduceMotion || heroBadgeLines.length < 2) return
+    if (reduceMotion || lines.length < 2) return
 
     const tick = window.setInterval(() => {
       setHasRotated(true)
-      setIndex((i) => (i + 1) % heroBadgeLines.length)
+      setIndex((i) => (i + 1) % lines.length)
     }, ROTATE_MS)
 
     return () => window.clearInterval(tick)
-  }, [reduceMotion])
+  }, [reduceMotion, lines])
 
-  const line =
-    heroBadgeLines[reduceMotion ? 0 : index] ?? heroBadgeLines[0]
+  if (lines.length === 0) {
+    return null
+  }
+
+  const line = lines[reduceMotion ? 0 : index] ?? lines[0]
 
   /* Skip enter animation on first line so the hero doesn’t bounce on load */
   const animateLine =

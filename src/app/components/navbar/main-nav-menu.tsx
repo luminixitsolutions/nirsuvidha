@@ -2,14 +2,47 @@
 import Link from 'next/link'
 import { categoryData } from '../../data/data'
 import { homePaths } from '../../data/site-content'
+import type { PublicService } from '@/lib/public-services'
 import navSvcStyles from './nav-services-dropdown.module.css'
+
+type NavServiceRow = {
+  key: string | number
+  icon: string
+  title: string
+  desc: string
+  href: string
+}
+
+function buildServiceRows(
+  serviceItems: PublicService[] | undefined,
+): NavServiceRow[] {
+  if (serviceItems && serviceItems.length > 0) {
+    return serviceItems.map((s) => ({
+      key: s.id,
+      icon: s.icon,
+      title: s.title,
+      desc: s.short_details,
+      href: s.slug ? `/services/${encodeURIComponent(s.slug)}` : (s.link_href ?? '/#services'),
+    }))
+  }
+  return categoryData.map((item) => ({
+    key: item.title,
+    icon: item.icon,
+    title: item.title,
+    desc: item.desc,
+    href: item.href ?? '/#services',
+  }))
+}
 
 type Props = {
   menu: string
+  /** From Laravel `GET /api/public/services` (same as home services grid). */
+  serviceItems?: PublicService[] | null
 }
 
-export default function MainNavMenu({ menu }: Props) {
+export default function MainNavMenu({ menu, serviceItems }: Props) {
   const homeActive = homePaths.includes(menu)
+  const rows = buildServiceRows(serviceItems ?? undefined)
 
   return (
     <>
@@ -27,10 +60,10 @@ export default function MainNavMenu({ menu }: Props) {
           <ul
             className={`nav-dropdown nav-submenu ${navSvcStyles.servicesList}`}
           >
-            {categoryData.map((item) => (
-              <li key={item.title}>
+            {rows.map((item) => (
+              <li key={String(item.key)}>
                 <Link
-                  href={item.href ?? '/#services'}
+                  href={item.href}
                   className={navSvcStyles.svcLink}
                 >
                   <span className={navSvcStyles.svcIcon} aria-hidden>
@@ -46,7 +79,7 @@ export default function MainNavMenu({ menu }: Props) {
           </ul>
         </li>
         <li>
-          <Link href="/#partners">Partners</Link>
+          <Link href="/partner-onboarding">Partners</Link>
         </li>
         <li>
           <Link href="/#contact">Contact</Link>

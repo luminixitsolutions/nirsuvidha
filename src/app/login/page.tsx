@@ -2,11 +2,13 @@ import Navlight from '../components/navbar/navlight'
 import FooterOne from '../components/footer/footer-one'
 import ScrollToTop from '../components/scroll-to-top'
 import LoginPageForm from '../components/auth/login-page-form'
+import { getPublicServices } from '@/lib/public-services'
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const serviceItems = await getPublicServices()
   return (
     <>
-      <Navlight />
+      <Navlight serviceItems={serviceItems} />
 
       <section className="gray-simple position-relative pt-5 pb-5">
         <div className="container pt-5">

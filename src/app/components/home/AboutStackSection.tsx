@@ -1,31 +1,36 @@
 import Image from "next/image"
 import { Fragment } from "react"
+import type { AboutFeature } from "@/lib/home-cms"
 import styles from "./home-extras.module.css"
 
-const featureItems = [
-  {
-    icon: "fa-shield-halved" as const,
-    title: "Secure & Compliant",
-    desc: "Bank-grade security",
-  },
-  {
-    icon: "fa-headset" as const,
-    title: "Expert Support",
-    desc: "Verified professionals",
-  },
-  {
-    icon: "fa-globe" as const,
-    title: "Anywhere, Anytime",
-    desc: "Access from any device",
-  },
-  {
-    icon: "fa-bolt" as const,
-    title: "Fast & Efficient",
-    desc: "Save time, stay ahead",
-  },
-] as const
+type Props = {
+  aboutBadge: string
+  aboutTitleBefore: string
+  aboutTitleGold: string
+  aboutLead: string
+  aboutP1: string
+  aboutP2: string
+  aboutGoalKicker: string
+  aboutGoalStatement: string
+  aboutFoot: string
+  aboutFeatures: AboutFeature[]
+  /** Full URL from Laravel `about_section_image` (optional). */
+  aboutSectionImage?: string
+}
 
-export default function AboutStackSection() {
+export default function AboutStackSection({
+  aboutBadge,
+  aboutTitleBefore,
+  aboutTitleGold,
+  aboutLead,
+  aboutP1,
+  aboutP2,
+  aboutGoalKicker,
+  aboutGoalStatement,
+  aboutFoot,
+  aboutFeatures,
+  aboutSectionImage,
+}: Props) {
   return (
     <section
       className={styles.aboutSection}
@@ -36,41 +41,36 @@ export default function AboutStackSection() {
         <div className="row align-items-start align-items-lg-center gy-5 gy-lg-0 g-xl-4">
           <div className="col-12 col-lg-5 col-xl-5">
             <div className={styles.aboutImgWrap}>
-              <Image
-                src="/img/about1.png"
-                width={715}
-                height={715}
-                className={styles.aboutImg}
-                alt="NRI Suvidha – unified platform for India-related financial and legal services"
-                sizes="(min-width: 992px) 40vw, 100vw"
-                priority={false}
-              />
+              {aboutSectionImage ? (
+                <Image
+                  src={aboutSectionImage}
+                  width={715}
+                  height={715}
+                  className={styles.aboutImg}
+                  alt="NRI Suvidha – unified platform for India-related financial and legal services"
+                  sizes="(min-width: 992px) 40vw, 100vw"
+                  unoptimized
+                  priority={false}
+                />
+              ) : null}
             </div>
           </div>
 
           <div className="col-12 col-lg-7 col-xl-6 offset-xl-1">
             <div className={styles.aboutContent}>
-              <span className={styles.abBadge}>About us</span>
+              <span className={styles.abBadge}>{aboutBadge}</span>
               <h2 className={styles.abTitle} id="about-india-title">
-                Your India Stack.{" "}
-                <span className={styles.abTitleGold}>Simplified.</span>
+                {aboutTitleBefore}
+                <span className={styles.abTitleGold}>{aboutTitleGold}</span>
               </h2>
               <p className={styles.abLead}>
-                A Financial Super-App built exclusively for NRIs &amp; OCIs
+                {aboutLead}
               </p>
               <div className={styles.abRule} aria-hidden />
 
               <div className={styles.abProse}>
-                <p>
-                  NRI Suvidha is your trusted partner for managing financial,
-                  legal, and investment needs in India from anywhere in the
-                  world.
-                </p>
-                <p>
-                  From banking and taxation to real estate and compliance, we
-                  bring everything into one unified platform — eliminating the
-                  need to coordinate with multiple agents or travel.
-                </p>
+                <p>{aboutP1}</p>
+                <p>{aboutP2}</p>
               </div>
 
               <div className={styles.goalCard}>
@@ -78,22 +78,21 @@ export default function AboutStackSection() {
                   <i className={`fa-solid fa-bullseye ${styles.goalIcon}`} />
                 </div>
                 <div className={styles.goalCopy}>
-                  <p className={styles.goalKicker}>Our goal is simple:</p>
+                  <p className={styles.goalKicker}>{aboutGoalKicker}</p>
                   <p className={styles.goalStatement}>
-                    Make India-related tasks effortless for global Indians.
+                    {aboutGoalStatement}
                   </p>
                 </div>
               </div>
 
               <p className={styles.abFoot}>
-                With verified experts, secure digital processes, and
-                end-to-end assistance, you stay in control while we handle the
-                complexity.
+                {aboutFoot}
               </p>
 
+              {aboutFeatures.length > 0 ? (
               <div className={styles.abFeatureCard}>
-                {featureItems.map((f, i) => (
-                  <Fragment key={f.title}>
+                {aboutFeatures.map((f, i) => (
+                  <Fragment key={`${f.title}-${i}`}>
                     {i > 0 && (
                       <div className={styles.abFeatureVsep} aria-hidden />
                     )}
@@ -107,6 +106,7 @@ export default function AboutStackSection() {
                   </Fragment>
                 ))}
               </div>
+              ) : null}
             </div>
           </div>
         </div>

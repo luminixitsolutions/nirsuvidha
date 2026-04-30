@@ -1,13 +1,11 @@
 import styles from "./home-extras.module.css"
 
-const points = [
-  "One Platform for All India Needs",
-  "Verified Experts & Compliance",
-  "Secure Document Handling",
-  "Transparent Pricing",
-] as const
+type Props = { points: string[] }
 
-export default function WhyChooseStrip() {
+export default function WhyChooseStrip({ points }: Props) {
+  if (points.length === 0) {
+    return null
+  }
   return (
     <section
       className={styles.whySection}
