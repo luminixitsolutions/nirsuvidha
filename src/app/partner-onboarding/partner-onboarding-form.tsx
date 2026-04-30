@@ -80,6 +80,7 @@ export default function PartnerOnboardingForm() {
       const fd = partnerFormToFormData(partnerType, f)
       const { ok, data } = await apiFetchAlwaysJson<{
         message?: string
+        description?: string
         errors?: Record<string, string[] | string>
       }>('/api/public/partner-onboarding', {
         method: 'POST',
