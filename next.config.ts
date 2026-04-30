@@ -2,8 +2,23 @@ import type { NextConfig } from 'next'
 
 const DEFAULT_API_BASE = 'https://luminixprojects.in/nrisuvidha/public/admin'
 
+function resolvedApiBaseForConfig(): string {
+  const raw = process.env.NEXT_PUBLIC_API_URL?.trim()
+  if (!raw) return DEFAULT_API_BASE
+  try {
+    const u = new URL(raw.replace(/\/$/, ''))
+    const h = u.hostname.toLowerCase()
+    const loopback =
+      h === 'localhost' || h === '127.0.0.1' || h === '::1' || h === '[::1]'
+    if (process.env.VERCEL && loopback) return DEFAULT_API_BASE
+  } catch {
+    return DEFAULT_API_BASE
+  }
+  return raw.replace(/\/$/, '')
+}
+
 function getStorageImageOrigin(): URL {
-  const raw = process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_BASE
+  const raw = resolvedApiBaseForConfig()
   try {
     const u = new URL(raw.replace(/\/$/, ''))
     let path = u.pathname.replace(/\/$/, '') || '/'

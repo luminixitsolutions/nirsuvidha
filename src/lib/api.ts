@@ -1,6 +1,35 @@
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
+const PRODUCTION_API_BASE =
   'https://luminixprojects.in/nrisuvidha/public/admin'
+
+function isLoopbackApiUrl(url: string): boolean {
+  try {
+    const u = new URL(url.trim().replace(/\/$/, ''))
+    const h = u.hostname.toLowerCase()
+    return (
+      h === 'localhost' ||
+      h === '127.0.0.1' ||
+      h === '::1' ||
+      h === '[::1]'
+    )
+  } catch {
+    return false
+  }
+}
+
+/**
+ * On Vercel, `NEXT_PUBLIC_*` is baked at build time. If the project still has a
+ * local Laravel URL in env, ignore it and use production so prerender/build never hits :8000.
+ */
+function resolveApiBaseUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_API_URL?.trim()
+  if (!raw) return PRODUCTION_API_BASE
+  if (process.env.VERCEL && isLoopbackApiUrl(raw)) {
+    return PRODUCTION_API_BASE
+  }
+  return raw.replace(/\/$/, '')
+}
+
+export const API_BASE_URL = resolveApiBaseUrl()
 
 export function getAdminApiBaseUrl(): string {
   return API_BASE_URL.replace(/\/$/, '')
@@ -42,21 +71,15 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
       cache: 'no-store',
     })
 
-    if (!res.ok) {
-      console.error('API error:', res.status, res.statusText)
-      return null
-    }
-
+    if (!res.ok) return null
     return await res.json()
-  } catch (error) {
-    console.error('API fetch failed:', error)
+  } catch {
     return null
   }
 }
 
 /**
- * Same transport as `apiFetch` but parses JSON for any status (e.g. Laravel validation on 422).
- * Use for `FormData` POSTs. `data` is null only on network failure or non-JSON body.
+ * Parses JSON for any HTTP status (e.g. Laravel validation on 422). For `FormData` POSTs.
  */
 export async function apiFetchAlwaysJson<T = unknown>(
   path: string,
@@ -71,8 +94,7 @@ export async function apiFetchAlwaysJson<T = unknown>(
     })
     const data = (await res.json().catch(() => null)) as T | null
     return { ok: res.ok, data }
-  } catch (error) {
-    console.error('API fetch failed:', error)
+  } catch {
     return { ok: false, data: null }
   }
 }
