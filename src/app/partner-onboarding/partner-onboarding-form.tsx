@@ -39,7 +39,7 @@ import {
   validatePartnerForm,
   type PartnerFormState,
 } from '@/lib/partner-onboarding-validate'
-import { apiFetchAlwaysJson, API_BASE_URL } from '@/lib/api'
+import { API_BASE_URL } from '@/lib/api'
 import styles from './partner-onboarding.module.css'
 
 function toggleIn(list: string[], value: string): string[] {
@@ -78,20 +78,23 @@ export default function PartnerOnboardingForm() {
     setSubmitting(true)
     try {
       const fd = partnerFormToFormData(partnerType, f)
-      const { ok, status, data } = await apiFetchAlwaysJson<{
-        message?: string
-        description?: string
-        errors?: Record<string, string[] | string>
-      }>('/api/public/partner-onboarding', {
+      const res = await fetch('/api/proxy/partner-onboarding', {
         method: 'POST',
         body: fd,
       })
+      const data = (await res.json().catch(() => null)) as {
+        message?: string
+        description?: string
+        errors?: Record<string, string[] | string>
+      } | null
+      const ok = res.ok
+      const status = res.status
       if (!ok) {
         const msg =
           (data?.message as string) ||
           (data?.errors && Object.values(data.errors).flat().join(' ')) ||
           (status
-            ? `Submission failed (HTTP ${status}). If this persists, the server may be blocking cross-origin requests (CORS).`
+            ? `Submission failed (HTTP ${status}).`
             : 'Network error — could not reach the server.')
         toast.error(msg)
         if (data?.errors && typeof data.errors === 'object') {

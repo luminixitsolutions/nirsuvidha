@@ -2,7 +2,7 @@
 
 import React, { useCallback, useId, useState } from 'react'
 import { toast } from 'sonner'
-import { apiFetchAlwaysJson, API_BASE_URL } from '@/lib/api'
+import { API_BASE_URL } from '@/lib/api'
 import styles from './service-detail.module.css'
 
 type Props = {
@@ -45,17 +45,18 @@ export default function SubmitCaseForm({ serviceId }: Props) {
       if (file) {
         fd.append('document', file)
       }
-      const { ok, status, data: json } = await apiFetchAlwaysJson<{
-        message?: string
-      }>('/api/public/service-case-submissions', {
+      const res = await fetch('/api/proxy/service-case-submissions', {
         method: 'POST',
         body: fd,
       })
-      if (!ok) {
+      const json = (await res.json().catch(() => null)) as {
+        message?: string
+      } | null
+      if (!res.ok) {
         toast.error(
           json?.message ||
-            (status
-              ? `Could not submit (HTTP ${status}).`
+            (res.status
+              ? `Could not submit (HTTP ${res.status}).`
               : 'Network error. Try again.'),
         )
         return
