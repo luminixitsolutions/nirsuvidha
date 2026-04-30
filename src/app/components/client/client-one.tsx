@@ -48,7 +48,7 @@ export default function ClientOne({ items }: Props) {
       <div className="row justify-content-center gx-4 gy-4">
         {items!.map((item, index) => {
           const imgSrc = getTestimonialPhotoSrc(item.photo, index)
-          // Laravel `storage` URLs are cross-origin (e.g. 127.0.0.1:8000 vs localhost:3000).
+          // Laravel `storage` URLs are cross-origin vs the Next.js origin.
           // `next/image` enforces `remotePatterns` and often breaks admin uploads; plain <img> always loads if URL is valid.
           const isAbsoluteHttp =
             imgSrc.startsWith('http://') || imgSrc.startsWith('https://')

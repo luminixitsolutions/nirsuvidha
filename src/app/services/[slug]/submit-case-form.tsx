@@ -2,6 +2,7 @@
 
 import React, { useCallback, useId, useState } from 'react'
 import { toast } from 'sonner'
+import { apiFetchAlwaysJson, API_BASE_URL } from '@/lib/api'
 import styles from './service-detail.module.css'
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 }
 
 export default function SubmitCaseForm({ serviceId }: Props) {
-  const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ?? ''
+  const apiConfigured = Boolean(API_BASE_URL?.trim())
   const fileId = useId()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -28,7 +29,7 @@ export default function SubmitCaseForm({ serviceId }: Props) {
       toast.error('Please enter a case title and description.')
       return
     }
-    if (!apiBase) {
+    if (!apiConfigured) {
       toast.error('NEXT_PUBLIC_API_URL is not configured.')
       return
     }
@@ -44,16 +45,17 @@ export default function SubmitCaseForm({ serviceId }: Props) {
       if (file) {
         fd.append('document', file)
       }
-      const res = await fetch(`${apiBase}/public/service-case-submissions`, {
+      const { ok, data: json } = await apiFetchAlwaysJson<{
+        message?: string
+      }>('/api/public/service-case-submissions', {
         method: 'POST',
         body: fd,
       })
-      const json = (await res.json().catch(() => ({}))) as { message?: string }
-      if (!res.ok) {
-        toast.error(json.message || 'Could not submit. Try again.')
+      if (!ok) {
+        toast.error(json?.message || 'Could not submit. Try again.')
         return
       }
-      toast.success(json.message || 'Case submitted.')
+      toast.success(json?.message || 'Case submitted.')
       setTitle('')
       setDescription('')
       setWhen('')

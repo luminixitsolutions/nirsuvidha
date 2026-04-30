@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import HomeBannerCounter from "./components/counter/home-banner-counter";
@@ -23,6 +22,8 @@ import homeServices from "./home-services-section.module.css";
 import AboutStackSection from "./components/home/AboutStackSection";
 import HowWeWorkSection from "./components/home/HowWeWorkSection";
 import WhyChooseStrip from "./components/home/WhyChooseStrip";
+
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const h = await getHomeCms();

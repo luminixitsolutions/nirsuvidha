@@ -68,13 +68,50 @@ export type HomeCms = {
   aboutSectionImage: string
 }
 
+function defaultHomeCms(): HomeCms {
+  return {
+    heroTitleBeforeGold: '',
+    heroTitleGoldPart: '',
+    heroSubtitle: '',
+    heroPrimaryCta: '',
+    heroSecondaryCta: '',
+    sectionServicesTitle: '',
+    sectionServicesSubtitle: '',
+    sectionHowItWorksTitle: '',
+    testimonialsHeading: '',
+    testimonialsSubtitle: '',
+    siteNameShort: '',
+    homeStats: [],
+    heroBadgeLines: [],
+    aboutBadge: '',
+    aboutTitleBefore: '',
+    aboutTitleGold: '',
+    aboutLead: '',
+    aboutP1: '',
+    aboutP2: '',
+    aboutGoalKicker: '',
+    aboutGoalStatement: '',
+    aboutFoot: '',
+    aboutFeatures: [],
+    howWorkTitle: '',
+    howWorkSubtitle: '',
+    howWorkSteps: [],
+    whyChoosePoints: [],
+    heroRightImage: '',
+    servicesSectionImage: '',
+    aboutSectionImage: '',
+  }
+}
+
 /**
  * Homepage copy from Laravel (section `home`) only — no static marketing fallbacks in Next.
  */
 export async function getHomeCms(): Promise<HomeCms> {
-  const { data } = await fetchPublicJson<{ data: CmsRow[] }>(
-    '/cms?section=home'
-  )
+  const res = await fetchPublicJson<{ data: CmsRow[] }>('/cms?section=home')
+  if (!res?.data) {
+    return defaultHomeCms()
+  }
+  const { data } = res
   const m = new Map(data.map((r) => [r.key, r.value]))
   return {
     heroTitleBeforeGold: pickOptional(m, 'hero_title_before'),

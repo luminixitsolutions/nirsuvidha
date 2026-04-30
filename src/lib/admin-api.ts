@@ -1,7 +1,7 @@
 import axios, { type AxiosError } from 'axios'
+import { getAdminApiBaseUrl } from '@/lib/api'
 
-const baseURL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+const baseURL = getAdminApiBaseUrl()
 
 export const adminApi = axios.create({
   baseURL,

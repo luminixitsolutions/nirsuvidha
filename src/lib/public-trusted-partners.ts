@@ -1,8 +1,9 @@
+import { getLaravelPublicOrigin } from '@/lib/api'
 import { fetchPublicJson } from '@/lib/public-api'
 
 /**
  * Resolves a trusted-partner `logo` URL for the browser (Laravel `storage/...` via `asset()`).
- * Plain `<img>` is used for http(s) URLs so logos work across localhost/127.0.0.1 like testimonials.
+ * Plain `<img>` is used for http(s) URLs; relative paths use the Laravel public origin.
  */
 export function getTrustedPartnerLogoSrc(
   logo: string | null | undefined,
@@ -15,9 +16,7 @@ export function getTrustedPartnerLogoSrc(
   if (p.startsWith('http://') || p.startsWith('https://')) {
     return p
   }
-  const base = (
-    process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api'
-  ).replace(/\/api\/?$/i, '')
+  const base = getLaravelPublicOrigin()
   if (p.startsWith('/')) {
     return `${base}${p}`
   }
@@ -35,10 +34,8 @@ export type PublicTrustedPartner = {
  * Active “Trusted by” companies for the home partner strip (Laravel `trusted_partners` table).
  */
 export async function getPublicTrustedPartners(): Promise<PublicTrustedPartner[]> {
-  try {
-    const res = await fetchPublicJson<{ data: PublicTrustedPartner[] }>('/trusted-partners')
-    return res.data
-  } catch {
-    return []
-  }
+  const res = await fetchPublicJson<{ data: PublicTrustedPartner[] }>(
+    '/trusted-partners',
+  )
+  return res?.data ?? []
 }

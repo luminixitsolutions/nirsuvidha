@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { getLaravelPublicOrigin } from '@/lib/api'
 import { adminApi } from '@/lib/admin-api'
 import { Button } from '@/components/admin/ui/Button'
 import { Card } from '@/components/admin/ui/Card'
@@ -29,8 +30,7 @@ export type ServiceRecord = {
 
 type Faq = { q: string; a: string }
 
-const apiBase = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api').replace(/\/$/, '')
-const siteBase = apiBase.replace(/\/api\/?$/, '')
+const siteBase = getLaravelPublicOrigin()
 
 function asLines(v: unknown): string[] {
   if (Array.isArray(v)) {

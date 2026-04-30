@@ -1,10 +1,5 @@
 import { fetchPublicJson } from '@/lib/public-api'
 
-const base = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api').replace(
-  /\/$/,
-  '',
-)
-
 export type PublicService = {
   id: number
   /** URL segment for `/services/[slug]` (from Laravel). */
@@ -40,12 +35,8 @@ export type PublicServiceDetailPayload = {
  * Live services for the home grid (Laravel `services` table).
  */
 export async function getPublicServices(): Promise<PublicService[]> {
-  try {
-    const res = await fetchPublicJson<{ data: PublicService[] }>('/services')
-    return res.data
-  } catch {
-    return []
-  }
+  const res = await fetchPublicJson<{ data: PublicService[] }>('/services')
+  return res?.data ?? []
 }
 
 /**
@@ -54,17 +45,8 @@ export async function getPublicServices(): Promise<PublicService[]> {
 export async function getPublicServiceDetail(
   slug: string,
 ): Promise<PublicServiceDetailPayload | null> {
-  const url = `${base}/public/services/${encodeURIComponent(slug)}`
-  const res = await fetch(url, {
-    headers: { Accept: 'application/json' },
-    next: { revalidate: 60 },
-  })
-  if (res.status === 404) {
-    return null
-  }
-  if (!res.ok) {
-    throw new Error(`public API ${res.status}`)
-  }
-  const json = (await res.json()) as { data: PublicServiceDetailPayload }
-  return json.data
+  const json = await fetchPublicJson<{ data: PublicServiceDetailPayload }>(
+    `/services/${encodeURIComponent(slug)}`,
+  )
+  return json?.data ?? null
 }

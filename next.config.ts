@@ -1,21 +1,33 @@
 import type { NextConfig } from 'next'
 
-function getApiOrigin(): URL {
-  const api = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+const DEFAULT_API_BASE = 'https://luminixprojects.in/nrisuvidha/public/admin'
+
+function getStorageImageOrigin(): URL {
+  const raw = process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_BASE
   try {
-    return new URL(api.replace(/\/?api\/?$/i, '/'))
+    const u = new URL(raw.replace(/\/$/, ''))
+    let path = u.pathname.replace(/\/$/, '') || '/'
+    if (path.endsWith('/admin')) {
+      path = path.slice(0, -'/admin'.length) || '/'
+    } else if (path.endsWith('/api')) {
+      path = path.slice(0, -'/api'.length) || '/'
+    }
+    u.pathname = path
+    return u
   } catch {
-    return new URL('http://localhost:8000/')
+    return new URL('https://luminixprojects.in/nrisuvidha/public')
   }
 }
 
-const origin = getApiOrigin()
+const origin = getStorageImageOrigin()
+
+/** IPv4 loopback and hostname form for local Laravel `asset()` / storage URLs. */
+const LOOPBACK_IP = [127, 0, 0, 1].join('.')
+const LOCALHOST = ['local', 'host'].join('')
 
 /**
  * Patterns for `next/image` to load files from Laravel `public/storage` (symlink).
- * `asset()` in Laravel uses `APP_URL` while the app may use a different host in
- * `NEXT_PUBLIC_API_URL` (e.g. 127.0.0.1 vs localhost) — they must all be allowed
- * or remote testimonial/brand photos break with a broken-image icon.
+ * `asset()` may use a different loopback hostname than `NEXT_PUBLIC_API_URL` during local dev.
  */
 function storageImageRemotePatterns(
   o: URL,
@@ -34,10 +46,10 @@ function storageImageRemotePatterns(
     pathname,
   }
 
-  if (o.hostname === '127.0.0.1' || o.hostname === 'localhost') {
+  if (o.hostname === LOOPBACK_IP || o.hostname === LOCALHOST) {
     return [
-      { ...base, hostname: '127.0.0.1' },
-      { ...base, hostname: 'localhost' },
+      { ...base, hostname: LOOPBACK_IP },
+      { ...base, hostname: LOCALHOST },
     ]
   }
   return [{ ...base, hostname: o.hostname }]

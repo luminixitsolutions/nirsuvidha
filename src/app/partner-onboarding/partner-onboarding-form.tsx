@@ -39,6 +39,7 @@ import {
   validatePartnerForm,
   type PartnerFormState,
 } from '@/lib/partner-onboarding-validate'
+import { apiFetchAlwaysJson, API_BASE_URL } from '@/lib/api'
 import styles from './partner-onboarding.module.css'
 
 function toggleIn(list: string[], value: string): string[] {
@@ -50,7 +51,7 @@ function FieldErr({ msg }: { msg?: string }) {
 }
 
 export default function PartnerOnboardingForm() {
-  const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ?? ''
+  const apiConfigured = Boolean(API_BASE_URL?.trim())
   const [partnerType, setPartnerType] = useState<PartnerType>('')
   const [f, setF] = useState<PartnerFormState>(() => emptyPartnerForm())
   const [fieldErr, setFieldErr] = useState<Record<string, string>>({})
@@ -70,19 +71,21 @@ export default function PartnerOnboardingForm() {
       toast.error('Please fix the highlighted fields.')
       return
     }
-    if (!apiBase) {
+    if (!apiConfigured) {
       toast.error('NEXT_PUBLIC_API_URL is not configured.')
       return
     }
     setSubmitting(true)
     try {
       const fd = partnerFormToFormData(partnerType, f)
-      const res = await fetch(`${apiBase}/public/partner-onboarding`, {
+      const { ok, data } = await apiFetchAlwaysJson<{
+        message?: string
+        errors?: Record<string, string[] | string>
+      }>('/api/public/partner-onboarding', {
         method: 'POST',
         body: fd,
       })
-      const data = await res.json().catch(() => ({}))
-      if (!res.ok) {
+      if (!ok) {
         const msg =
           (data?.message as string) ||
           (data?.errors && Object.values(data.errors).flat().join(' ')) ||
