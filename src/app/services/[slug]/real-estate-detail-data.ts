@@ -275,10 +275,24 @@ export const REAL_ESTATE_SEARCH_FIELDS: RealEstateSearchFieldDef[] = [
   },
 ]
 
-export const REAL_ESTATE_FEATURED = [
+export type RealEstateFeaturedListingCard = {
+  id: string
+  transactionType: RealEstateTransactionType
+  title: string
+  location: string
+  status: string
+  bhk: string
+  sqft: string
+  rera: string
+  amenities: string[]
+  price: string
+  builder: string
+}
+
+export const REAL_ESTATE_FEATURED: RealEstateFeaturedListingCard[] = [
   {
     id: 'seed-featured-1',
-    transactionType: 'buy' as const,
+    transactionType: 'buy',
     title: '3 BHK Apartment in Gurgaon',
     location: 'Sector 70, Gurgaon',
     status: 'Ready to Move',
@@ -291,7 +305,7 @@ export const REAL_ESTATE_FEATURED = [
   },
   {
     id: 'seed-featured-2',
-    transactionType: 'buy' as const,
+    transactionType: 'buy',
     title: '2 BHK Villa in Pune',
     location: 'Hinjewadi, Pune',
     status: 'Under Construction',
@@ -302,7 +316,7 @@ export const REAL_ESTATE_FEATURED = [
     price: '₹85 Lakhs',
     builder: 'Godrej Properties',
   },
-] as const
+]
 
 export const HOME_LOAN_SECTION = {
   title: 'Home Loan Partners',

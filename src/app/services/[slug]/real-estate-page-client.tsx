@@ -39,9 +39,8 @@ import {
   REAL_ESTATE_CARE_SERVICES,
   type RealEstateCareCard,
   type RealEstateTransactionType,
+  type RealEstateFeaturedListingCard,
 } from './real-estate-detail-data'
-
-type FeaturedCard = (typeof REAL_ESTATE_FEATURED)[number]
 
 function normalizeTransactionType(
   raw: string | null | undefined,
@@ -87,7 +86,9 @@ function mapBundleCurated(
   }))
 }
 
-function mapBundleFeatured(bundle: RealEstatePublicBundle | null): FeaturedCard[] | null {
+function mapBundleFeatured(
+  bundle: RealEstatePublicBundle | null,
+): RealEstateFeaturedListingCard[] | null {
   if (!bundle?.featured_listings?.length) {
     return null
   }
@@ -100,7 +101,7 @@ function mapBundleFeatured(bundle: RealEstatePublicBundle | null): FeaturedCard[
     bhk: row.bhk,
     sqft: row.sqft,
     rera: row.rera,
-    amenities: row.amenities,
+    amenities: Array.isArray(row.amenities) ? [...row.amenities] : [],
     price: row.price,
     builder: row.builder,
   }))
@@ -223,10 +224,10 @@ export default function RealEstatePageClient({ serviceTitle, bundle }: Props) {
     )
   }, [curatedListings, searchMode])
 
-  const featuredListings = useMemo((): FeaturedCard[] => {
+  const featuredListings = useMemo((): RealEstateFeaturedListingCard[] => {
     const mapped = mapBundleFeatured(bundle)
-    const list: FeaturedCard[] =
-      mapped ?? ([...REAL_ESTATE_FEATURED] as unknown as FeaturedCard[])
+    const list: RealEstateFeaturedListingCard[] =
+      mapped ?? [...REAL_ESTATE_FEATURED]
     return list.filter((row) => (row.transactionType ?? 'buy') === searchMode)
   }, [bundle, searchMode])
 
