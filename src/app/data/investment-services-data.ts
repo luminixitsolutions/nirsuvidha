@@ -1,80 +1,108 @@
-/** /investment-services — from sample Investment Services */
+/** `/services/investment-services` — aligned with Lovable investment-services hub */
 
 export const investmentPage = {
   title: 'Investment Services',
   subtitle: 'Mutual funds, equities, and portfolio guidance aligned with your India goals',
 } as const
 
-export const recommendationStrip = [
-  {
-    tag: 'Recommended',
-    tagClass: 'text-success',
-    name: 'Large-cap diversified fund',
-    note: 'Illustrative 12–15% past range — not a guarantee',
-  },
-  {
-    tag: 'Trending',
-    tagClass: 'text-primary',
-    name: 'Blue-chip focused fund',
-    note: 'Illustrative 10–12% past range',
-  },
-  {
-    tag: 'Balanced',
-    tagClass: 'text-main',
-    name: 'Hybrid / balanced fund',
-    note: 'Illustrative 8–10% past range',
-  },
+export const investmentRecommendedIntro =
+  'Based on your risk profile: Moderate Aggressive' as const
+
+export const recommendationPicks = [
+  { tier: 'Recommended', name: 'HDFC Top 100 Fund', expectedReturn: '12-15%' },
+  { tier: 'Trending', name: 'SBI Blue Chip Fund', expectedReturn: '10-12%' },
+  { tier: 'Conservative', name: 'ICICI Balanced Fund', expectedReturn: '8-10%' },
 ] as const
 
-export const investmentUniverse = [
+export const availableSection = {
+  title: 'Available Investments',
+  subtitle: 'Explore mutual funds and stocks',
+} as const
+
+export type InvestmentRiskLevel = 'Low' | 'Moderate' | 'High' | 'Very High'
+
+export const availableInvestments = [
   {
-    name: 'Illustrative Large-cap Fund A',
+    name: 'HDFC Top 100 Fund',
     category: 'Large Cap',
-    nav: '₹685.50',
-    ret: '+12.5%',
-    risk: 'Moderate',
+    navLabel: '₹685.50',
+    retLabel: '+12.5%',
+    risk: 'Moderate' as InvestmentRiskLevel,
   },
   {
-    name: 'Illustrative Large-cap Fund B',
+    name: 'SBI Blue Chip Fund',
     category: 'Large Cap',
-    nav: '₹58.20',
-    ret: '+10.8%',
-    risk: 'Low',
+    navLabel: '₹58.20',
+    retLabel: '+10.8%',
+    risk: 'Low' as InvestmentRiskLevel,
   },
   {
-    name: 'Illustrative Sector Fund',
+    name: 'ICICI Technology Fund',
     category: 'Sectoral',
-    nav: '₹125.80',
-    ret: '+18.2%',
-    risk: 'High',
+    navLabel: '₹125.80',
+    retLabel: '+18.2%',
+    risk: 'High' as InvestmentRiskLevel,
   },
   {
-    name: 'Illustrative Small-cap Fund',
+    name: 'Axis Small Cap Fund',
     category: 'Small Cap',
-    nav: '₹45.30',
-    ret: '+22.1%',
-    risk: 'Very High',
+    navLabel: '₹45.30',
+    retLabel: '+22.1%',
+    risk: 'Very High' as InvestmentRiskLevel,
   },
   {
-    name: 'Illustrative Listed Stock',
-    category: 'Equity',
-    nav: '₹245.60',
-    ret: '+8.5%',
-    risk: 'High',
+    name: 'Reliance Infrastructure',
+    category: 'Stock',
+    navLabel: '₹245.60',
+    retLabel: '+8.5%',
+    risk: 'High' as InvestmentRiskLevel,
   },
 ] as const
 
-export const investmentProcess = [
+export const transactionSection = {
+  title: 'Transaction History',
+  subtitle: 'Your recent investment transactions',
+} as const
+
+export const investmentTransactions = [
   {
-    title: 'Risk profile & goals',
-    desc: 'We align recommendations to your timeline and India exposure preferences.',
+    kind: 'Purchase',
+    name: 'HDFC Top 100 Fund',
+    amount: '₹10,000',
+    date: '2024-01-15',
+    status: 'Completed',
   },
   {
-    title: 'Execution support',
-    desc: 'Assisted onboarding with KYC-compliant channels.',
+    kind: 'SIP',
+    name: 'SBI Blue Chip Fund',
+    amount: '₹5,000',
+    date: '2024-01-10',
+    status: 'Completed',
   },
   {
-    title: 'Review cadence',
-    desc: 'Periodic portfolio reviews and rebalancing guidance.',
+    kind: 'Redemption',
+    name: 'ICICI Technology Fund',
+    amount: '₹8,500',
+    date: '2024-01-05',
+    status: 'Processing',
   },
 ] as const
+
+export const quickInvestFundOptions = [
+  { id: 'hdfc-top-100', label: 'HDFC Top 100 Fund' },
+  { id: 'sbi-bluechip', label: 'SBI Blue Chip Fund' },
+  { id: 'icici-tech', label: 'ICICI Technology Fund' },
+] as const
+
+export const quickInvestCopy = {
+  title: 'Quick Invest',
+  subtitle: 'Make an investment quickly',
+  fundLabel: 'Select Fund',
+  amountLabel: 'Investment Amount',
+  typeLabel: 'Investment Type',
+  oneTime: 'One-time Investment',
+  sip: 'Monthly SIP',
+  proceedCta: 'Proceed to Payment',
+  paymentFooter: 'Secure payment powered by Razorpay',
+  minNote: 'Min investment: ₹500',
+} as const

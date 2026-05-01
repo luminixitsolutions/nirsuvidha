@@ -7,6 +7,11 @@ import { Toaster } from 'sonner'
 import { getPublicServiceDetail, getPublicServices } from '@/lib/public-services'
 import SubmitCaseForm from './submit-case-form'
 import BankingServiceDetail from './banking-service-detail'
+import BusinessConsultingDetail from './business-consulting-detail'
+import InvestmentServicesDetail from './investment-services-detail'
+import LegalServicesDetail from './legal-services-detail'
+import RealEstateServiceDetail from './real-estate-service-detail'
+import TaxationServicesDetail from './taxation-services-detail'
 import styles from './service-detail.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -53,10 +58,67 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <>
         <Toaster richColors position="top-center" />
         <Navlight serviceItems={serviceItems} />
-        <BankingServiceDetail
-          serviceId={service.id}
-          serviceTitle={service.title}
-        />
+        <BankingServiceDetail />
+        <FooterOne />
+        <ScrollToTop />
+      </>
+    )
+  }
+
+  if (slug === 'legal-services') {
+    return (
+      <>
+        <Toaster richColors position="top-center" />
+        <Navlight serviceItems={serviceItems} />
+        <LegalServicesDetail serviceId={service.id} />
+        <FooterOne />
+        <ScrollToTop />
+      </>
+    )
+  }
+
+  if (slug === 'investment-services') {
+    return (
+      <>
+        <Toaster richColors position="top-center" />
+        <Navlight serviceItems={serviceItems} />
+        <InvestmentServicesDetail />
+        <FooterOne />
+        <ScrollToTop />
+      </>
+    )
+  }
+
+  if (slug === 'tax-compliance' || slug === 'taxation-services') {
+    return (
+      <>
+        <Toaster richColors position="top-center" />
+        <Navlight serviceItems={serviceItems} />
+        <TaxationServicesDetail serviceId={service.id} />
+        <FooterOne />
+        <ScrollToTop />
+      </>
+    )
+  }
+
+  if (slug === 'business-setup-advisory' || slug === 'business-consulting') {
+    return (
+      <>
+        <Toaster richColors position="top-center" />
+        <Navlight serviceItems={serviceItems} />
+        <BusinessConsultingDetail serviceId={service.id} />
+        <FooterOne />
+        <ScrollToTop />
+      </>
+    )
+  }
+
+  if (slug === 'real-estate-services' || slug === 'real-estate') {
+    return (
+      <>
+        <Toaster richColors position="top-center" />
+        <Navlight serviceItems={serviceItems} />
+        <RealEstateServiceDetail serviceTitle={service.title} />
         <FooterOne />
         <ScrollToTop />
       </>

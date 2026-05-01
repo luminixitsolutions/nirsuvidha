@@ -7,9 +7,15 @@ import styles from './service-detail.module.css'
 
 type Props = {
   serviceId: number
+  heading?: string
+  subheading?: string
 }
 
-export default function SubmitCaseForm({ serviceId }: Props) {
+export default function SubmitCaseForm({
+  serviceId,
+  heading = 'Submit Case',
+  subheading,
+}: Props) {
   const apiConfigured = Boolean(API_BASE_URL?.trim())
   const fileId = useId()
   const [title, setTitle] = useState('')
@@ -75,7 +81,14 @@ export default function SubmitCaseForm({ serviceId }: Props) {
 
   return (
     <div className={styles.formCard}>
-      <h2 className={styles.formTitle}>Submit Case</h2>
+      {subheading ? (
+        <div className="mb-3">
+          <h2 className={styles.formTitle}>{heading}</h2>
+          <p className="small text-muted mb-0">{subheading}</p>
+        </div>
+      ) : (
+        <h2 className={styles.formTitle}>{heading}</h2>
+      )}
       <form onSubmit={onSubmit}>
         <div className={styles.field}>
           <label htmlFor="case_title">Case Title</label>

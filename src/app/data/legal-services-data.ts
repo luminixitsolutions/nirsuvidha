@@ -19,12 +19,42 @@ export const legalPage = {
 } as const
 
 export const legalCategories = [
-  { title: 'Property Law', desc: 'Title verification, disputes, and property documentation.', cases: 156, icon: 'fa-solid fa-house' },
-  { title: 'Family Law', desc: 'Divorce, custody, maintenance, and family settlements.', cases: 142, icon: 'fa-solid fa-people-roof' },
-  { title: 'Corporate Law', desc: 'Contracts, compliance, and corporate governance.', cases: 234, icon: 'fa-solid fa-building' },
-  { title: 'Criminal Law', desc: 'Defense coordination and bail-related support.', cases: 67, icon: 'fa-solid fa-scale-balanced' },
-  { title: 'Consumer Protection', desc: 'Consumer forums, defective goods, and service disputes.', cases: 123, icon: 'fa-solid fa-shield-halved' },
-  { title: 'Employment Law', desc: 'Workplace disputes, contracts, and exit settlements.', cases: 98, icon: 'fa-solid fa-briefcase' },
+  {
+    title: 'Property Law',
+    desc: 'Real estate disputes, property verification, sale/purchase agreements',
+    cases: 156,
+    icon: 'fa-solid fa-house',
+  },
+  {
+    title: 'Family Law',
+    desc: 'Divorce, child custody, marriage registration, inheritance',
+    cases: 89,
+    icon: 'fa-solid fa-people-roof',
+  },
+  {
+    title: 'Corporate Law',
+    desc: 'Company formation, contracts, compliance, mergers & acquisitions',
+    cases: 234,
+    icon: 'fa-solid fa-building',
+  },
+  {
+    title: 'Criminal Law',
+    desc: 'Criminal defense, bail applications, court representation',
+    cases: 67,
+    icon: 'fa-solid fa-scale-balanced',
+  },
+  {
+    title: 'Consumer Protection',
+    desc: 'Consumer complaints, refund cases, product liability',
+    cases: 123,
+    icon: 'fa-solid fa-shield-halved',
+  },
+  {
+    title: 'Employment Law',
+    desc: 'Labor disputes, wrongful termination, workplace harassment',
+    cases: 98,
+    icon: 'fa-solid fa-briefcase',
+  },
 ] as const
 
 export const quickLegalActions = [
@@ -92,8 +122,26 @@ export const estatePlanningCards = [
 export const propertyTransferCards = [
   { title: 'Probate of Will', desc: 'Court-led probate process to legally validate and execute the will of the deceased.' },
   { title: 'Property Transfer & Claims', desc: 'End-to-end coordination of property mutation, transfer, and rightful claims for heirs.' },
-  { title: 'Unclaimed Asset Recovery', desc: 'Locate and recover dormant bank accounts, shares, and unclaimed assets.' },
-  { title: 'Government ID Closure', desc: 'Closure and succession coordination for government IDs and linked accounts.' },
+  {
+    title: 'Unclaimed Asset Recovery',
+    desc: 'Tracing and recovery of dormant bank accounts, shares, insurance, and other unclaimed assets.',
+  },
+  {
+    title: 'Government ID Closure',
+    desc: 'Cancellation and closure of Aadhaar, PAN, passport, and other government IDs of the deceased.',
+  },
+  {
+    title: 'Succession / Legal Heir Certificate',
+    desc: 'Procurement of succession and legal heir certificates required for asset transfers.',
+  },
+  {
+    title: 'Ancillary Inheritance Services',
+    desc: 'Support for cross-border inheritance formalities, notarization, and apostille requirements.',
+  },
+  {
+    title: 'All Post-Demise Services',
+    desc: 'Comprehensive bereavement support covering documentation, claims, transfers, and closures.',
+  },
 ] as const
 
 export const whyChooseLegal = [
@@ -112,7 +160,7 @@ export const featuredLawyers = [
     name: 'Adv. Priya Sharma',
     verified: true,
     specialization: 'Property Law',
-    experience: 12,
+    experience: 15,
     location: 'Mumbai',
     rating: 4.9,
     reviews: 234,
@@ -120,10 +168,10 @@ export const featuredLawyers = [
     languages: 'Hindi, English, Marathi',
   },
   {
-    name: 'Adv. Rohan Mehta',
+    name: 'Adv. Rajesh Kumar',
     verified: true,
     specialization: 'Corporate Law',
-    experience: 9,
+    experience: 12,
     location: 'Delhi',
     rating: 4.8,
     reviews: 189,
@@ -131,14 +179,14 @@ export const featuredLawyers = [
     languages: 'Hindi, English',
   },
   {
-    name: 'Adv. Ananya Krishnan',
+    name: 'Adv. Meera Patel',
     verified: true,
     specialization: 'Family Law',
-    experience: 15,
+    experience: 10,
     location: 'Bangalore',
-    rating: 4.9,
-    reviews: 312,
-    fee: '₹2,800',
-    languages: 'English, Kannada, Tamil',
+    rating: 4.7,
+    reviews: 156,
+    fee: '₹2,000',
+    languages: 'Hindi, English, Gujarati',
   },
 ] as const

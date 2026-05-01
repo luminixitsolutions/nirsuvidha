@@ -1,0 +1,15 @@
+.shell {
+  min-height: 100vh;
+  background: #fff;
+}
+
+.main {
+  padding-top: 1.25rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 992px) {
+  .main {
+    padding-top: 1.5rem;
+  }
+}

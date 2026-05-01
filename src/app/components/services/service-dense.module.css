@@ -110,44 +110,74 @@
   margin-bottom: 1rem;
 }
 
-/* Tab strip — pill bar */
+/* Tab strip — Lovable-style: beige bar, white pill for active, flat grey inactive */
 .tabBar {
-  background: #fff;
-  border: 1px solid color-mix(in srgb, var(--bordercolor), transparent 35%);
-  border-radius: 999px;
-  padding: 0.3rem;
+  background: #faf6ef;
+  border: 1px solid #ebe4d6;
+  border-radius: 0.65rem;
+  padding: 0.35rem;
   margin-bottom: 1.25rem;
-  box-shadow: 0 2px 14px rgba(15, 22, 30, 0.05);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.tabNav {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  gap: 0.2rem;
+  align-items: stretch;
+}
+
+.tabNav :global(.nav-item) {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .tabNav :global(.nav-link) {
-  padding: 0.45rem 1rem !important;
-  font-size: 0.875rem !important;
-  border-radius: 999px !important;
-  color: var(--headingcolor);
-  border: 1px solid transparent;
+  width: 100%;
+  padding: 0.5rem 0.4rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  line-height: 1.25;
+  border-radius: 0.5rem !important;
+  color: #6b7280 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+@media (min-width: 576px) {
+  .tabNav :global(.nav-link) {
+    font-size: 0.82rem !important;
+    padding: 0.55rem 0.65rem !important;
+  }
+}
+
+.tabNav :global(.nav-link i) {
+  margin-right: 0.28rem;
+  font-size: 0.8em;
+  opacity: 0.85;
 }
 
 .tabNav :global(.nav-link:not(.active):hover) {
-  background: color-mix(in srgb, var(--maincolor), transparent 93%);
-  color: var(--headingcolor);
+  background: rgba(255, 255, 255, 0.45) !important;
+  color: #374151 !important;
 }
 
 .tabNav :global(.nav-link.active) {
-  background: var(--maincolor) !important;
-  color: #fff !important;
-  font-weight: 600;
-  border-color: color-mix(in srgb, var(--maincolor), #000 8%) !important;
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--maincolor), transparent 55%);
+  background: #fff !important;
+  color: #111827 !important;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08) !important;
 }
 
 .tabNav :global(.nav-link.active i) {
-  opacity: 1 !important;
-  color: inherit !important;
+  color: var(--maincolor);
+  opacity: 1;
 }
 
 .iconBubbleSm {

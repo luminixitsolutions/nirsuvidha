@@ -6,13 +6,19 @@ import type { PublicService } from '@/lib/public-services'
 import NavBrand from './nav-brand'
 import MainNavMenu from './main-nav-menu'
 import './navlight-light-override.css'
+import './pricing-header.css'
+import './nav-solid-light.css'
 
 type Props = {
   /** Pass from server (Laravel) so the Services menu matches the home grid. */
   serviceItems?: PublicService[] | null
+  /** Solid gold bar + white nav links (optional legacy style). */
+  variant?: 'default' | 'pricing'
+  /** White bar, dark links + Login / Get Started (same as home marketing header). */
+  solidBar?: boolean
 }
 
-export default function Navlight({ serviceItems }: Props) {
+export default function Navlight({ serviceItems, variant = 'default', solidBar = false }: Props) {
     let [toggle, setToggle] = useState<boolean>(false);
     let [scroll,setScroll] = useState<boolean>(false);
     let [menu, setMenu] = useState<string>('');
@@ -44,9 +50,19 @@ export default function Navlight({ serviceItems }: Props) {
             };
         }
     }, [loction]);
+  const pricingBar = variant === 'pricing' && !solidBar
+
+  const navSurfaceClass = solidBar
+    ? 'nav-on-light-hero nav-solid-light'
+    : pricingBar
+      ? 'pricing-header'
+      : 'nav-on-light-hero'
+
   return (
     <>
-        <div className={`header header-transparent change-logo nav-on-light-hero ${scroll ? 'header-fixed' : ''}`}>
+        <div
+          className={`header header-transparent change-logo ${navSurfaceClass} ${scroll ? 'header-fixed' : ''}`}
+        >
             <div className="container">
                 <nav id="navigation" className={windowWidth > 991 ? "navigation navigation-landscape" : "navigation navigation-portrait"}>
                     <div className="nav-header">
@@ -67,7 +83,11 @@ export default function Navlight({ serviceItems }: Props) {
                     </div>
                     <div className={`nav-menus-wrapper ${toggle ? 'nav-menus-wrapper-open' : ''}`}>
                         <span className="nav-menus-wrapper-close-button" onClick={()=>setToggle(!toggle)}>✕</span>
-                        <MainNavMenu menu={menu} serviceItems={serviceItems} />
+                        <MainNavMenu
+                          menu={menu}
+                          serviceItems={serviceItems}
+                          variant={pricingBar ? 'pricing' : 'default'}
+                        />
                     </div>
                 </nav>
             </div>

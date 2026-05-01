@@ -5,6 +5,28 @@ export const financePage = {
   subtitle: 'Loans, banking, fixed deposits, and PAN support for NRIs & OCIs',
 } as const
 
+/** Lovable-aligned section headers for Banking & FD tab */
+export const financeFdSection = {
+  title: 'Best Fixed Deposit Rates',
+  subtitle: 'Earn up to 8.5% p.a. with top-rated banks & NBFCs',
+} as const
+
+export const financeAccountsSection = {
+  title: 'Open Bank Account - NRI/NRO/NRE Accounts',
+  subtitle: "Open accounts with India's leading banks with zero balance",
+} as const
+
+export const financeAccountForm = {
+  title: 'Quick Account Opening Application',
+  subtitle: 'Fill this form to start your account opening process',
+  panCheckbox: "I don't have a PAN Card",
+  panCheckboxHelp: 'Check this if you need help with PAN card application',
+  panCalloutTitle: 'No PAN Card? No Problem!',
+  panCalloutBody:
+    "We'll help you apply for a PAN card as part of the account opening process. Our team will guide you through the entire documentation process.",
+  submitCta: 'Start Account Opening Process',
+} as const
+
 export const loanProducts = [
   {
     id: 'personal',
@@ -53,10 +75,10 @@ export const loanProducts = [
 ] as const
 
 export const fdHighlights = [
-  { label: 'Highest rate (indicative)', value: '8.5% p.a.' },
-  { label: 'Min investment', value: '₹1,000' },
-  { label: 'Min tenure', value: '7 days' },
-  { label: 'Safety', value: 'Rated issuers' },
+  { label: 'Highest Rate', value: '8.5%' },
+  { label: 'Min Investment', value: '₹1,000' },
+  { label: 'Min Tenure', value: '7 Days' },
+  { label: 'Safe & Secure', value: '100%' },
 ] as const
 
 export const fdOffers = [
@@ -86,25 +108,25 @@ export const fdOffers = [
 export const nriBankAccounts = [
   {
     bank: 'ICICI Bank',
-    note: 'NRE / NRO accounts',
-    badge: 'Zero balance',
+    note: 'NRE/NRO Accounts',
+    badge: 'Zero Balance',
     accent: 'primary',
   },
   {
     bank: 'SBI',
-    note: 'NRI-focused desk',
-    badge: '₹10K min',
+    note: 'NRI Services',
+    badge: '₹10K Min',
     accent: 'primary',
   },
   {
     bank: 'HDFC Bank',
-    note: 'Global banking',
+    note: 'Global Banking',
     badge: 'Premium',
     accent: 'danger',
   },
   {
     bank: 'Axis Bank',
-    note: 'Digital onboarding',
+    note: 'NRI Banking',
     badge: 'Digital',
     accent: 'purple',
   },

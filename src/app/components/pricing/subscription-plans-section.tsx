@@ -7,7 +7,7 @@ const starterFeatures = [
   'Document upload & storage',
   'Email support',
   'Basic tax guidance',
-  'NRI banking information',
+  'NRI banking info',
 ]
 
 const professionalFeaturesMonthly = [
@@ -19,6 +19,7 @@ const professionalFeaturesMonthly = [
   'Investment advisory',
   'Legal document review',
   'Quarterly portfolio review',
+  'Repatriation & remittance guidance',
 ]
 
 const enterpriseFeatures = [
@@ -36,32 +37,32 @@ const individualServices = [
   {
     title: 'Tax Filing Service',
     price: '5,000',
-    desc: 'Complete income tax filing with DTAA benefits.',
+    desc: 'Complete income tax filing with DTAA benefits',
   },
   {
     title: 'Company Registration',
     price: '15,000',
-    desc: 'Complete business setup and registration.',
+    desc: 'Complete business setup and registration',
   },
   {
     title: 'Investment Setup',
     price: '8,000',
-    desc: 'Portfolio setup and advisory.',
+    desc: 'Portfolio setup and advisory',
   },
   {
     title: 'Legal Documentation',
     price: '12,000',
-    desc: 'Property and legal document services.',
+    desc: 'Property and legal document services',
   },
   {
     title: 'Banking Services',
     price: '3,000',
-    desc: 'NRE/NRO account opening assistance.',
+    desc: 'NRE/NRO account opening assistance',
   },
   {
     title: 'Real Estate Advisory',
     price: '10,000',
-    desc: 'Property buying and selling consultation.',
+    desc: 'Property buying/selling consultation',
   },
 ]
 
@@ -113,24 +114,26 @@ export default function SubscriptionPlansSection() {
 
   return (
     <>
-      <div className="row justify-content-center mb-4">
-        <div className="col-lg-9 col-md-11 text-center">
-          <div className={styles.crownWrap} aria-hidden>
-            <i className="fa-solid fa-crown" />
-          </div>
-          <h2 className="mb-2">Choose Your Plan</h2>
-          <p className="text-muted mb-2">
-            Comprehensive NRI financial services with flexible pricing. Start with our free plan or unlock premium
-            features with monthly or annual subscriptions.
-          </p>
-          <div className={styles.introActions}>
-            <Link href="/" className="btn btn-md btn-outline-main rounded-5 px-4">
-              <i className="fa-solid fa-arrow-left me-2" />
-              Home
-            </Link>
-            <Link href="/login" className="btn btn-md btn-light-main rounded-5 px-4">
-              Dashboard
-            </Link>
+      <div className={`row justify-content-center`}>
+        <div className="col-12 px-2 px-sm-3">
+          <div className={styles.pricingHero}>
+            <div className={`${styles.crownWrap} ${styles.crownOutline}`} aria-hidden>
+              <i className="fa-solid fa-crown" />
+            </div>
+            <h1 className={styles.pricingHeroTitle}>Choose Your Plan</h1>
+            <p className={styles.pricingHeroLead}>Comprehensive NRI financial services with flexible pricing</p>
+            <p className={styles.pricingHeroMuted}>
+              Start with our free plan or unlock premium features with monthly subscriptions
+            </p>
+            <div className={styles.introActions}>
+              <Link href="/" className="btn btn-md btn-outline-main rounded-5 px-4">
+                <i className="fa-solid fa-arrow-left me-2" />
+                Home
+              </Link>
+              <Link href="/login" className="btn btn-md btn-light-main rounded-5 px-4">
+                Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -149,9 +152,9 @@ export default function SubscriptionPlansSection() {
         <div className="row justify-content-center mb-2">
           <div className="col-xl-8 col-lg-10 text-center">
             <div className="sec-heading center mb-3">
-              <h2 className="mb-2">Membership Plans</h2>
-              <p className="mb-3">Choose the perfect plan for your NRI financial needs.</p>
-              <span className={styles.promoPill}>Limited time: 25% off Professional plan (annual billing)</span>
+              <h2 className={`mb-2 ${styles.membershipTitle}`}>Membership Plans</h2>
+              <p className="mb-3">Choose the perfect plan for your NRI financial needs</p>
+              <span className={styles.promoPill}>Limited Time: 25% OFF Professional Plan</span>
             </div>
 
             <div className="d-flex flex-column align-items-center gap-2 mb-4">
@@ -171,9 +174,9 @@ export default function SubscriptionPlansSection() {
         <div className="row g-4 align-items-stretch mb-5">
           <div className="col-xl-4 col-md-6">
             <div className={`${styles.planCard} p-4 pt-5`}>
-              <h5 className="fw-bold mb-1">Starter</h5>
-              <p className="text-muted small mb-3">Essential services for new NRIs.</p>
-              <div className={`${styles.priceDisplay} mb-4`}>Free</div>
+              <h5 className={styles.planCardTitle}>Starter</h5>
+              <div className={`${styles.priceDisplay} mb-2`}>Free</div>
+              <p className={`${styles.planCardSubtext} text-muted small mb-4`}>Essential services for new NRIs</p>
               <ul className={styles.featureList}>
                 {starterFeatures.map((line) => (
                   <FeatureRow key={line}>{line}</FeatureRow>
@@ -181,7 +184,7 @@ export default function SubscriptionPlansSection() {
               </ul>
               <div className="mt-4 pt-2">
                 <Link href="/login" className="btn btn-outline-main full-width rounded-4 fw-medium py-3">
-                  Get started
+                  Get Started
                 </Link>
               </div>
             </div>
@@ -189,19 +192,15 @@ export default function SubscriptionPlansSection() {
 
           <div className="col-xl-4 col-md-6">
             <div className={`${styles.planCard} ${styles.planCardFeatured} p-4 pt-5 mt-4 mt-xl-0`}>
-              <span className={styles.popularBadge}>Most popular</span>
-              <h5 className="fw-bold mb-1">Professional</h5>
-              <p className="text-muted small mb-3">Complete NRI financial management.</p>
+              <span className={styles.popularBadge}>Most Popular</span>
+              <h5 className={styles.planCardTitle}>Professional</h5>
 
               <div className={`${styles.priceBlockMonthly} mb-4`}>
                 <div className={`${styles.priceDisplay} mb-1`}>
                   ₹{proMonthly.toLocaleString('en-IN')}
                   <span className="fs-6 fw-semibold text-muted">/month</span>
                 </div>
-                <div>
-                  <span className={styles.strikePrice}>₹{proStrike.toLocaleString('en-IN')}</span>
-                  <span className="small text-muted ms-2">List price</span>
-                </div>
+                <span className={styles.strikePrice}>₹{proStrike.toLocaleString('en-IN')}</span>
               </div>
 
               <div className={`${styles.priceBlockAnnual} mb-4`}>
@@ -212,6 +211,8 @@ export default function SubscriptionPlansSection() {
                 <p className="small text-success fw-semibold mb-0">Save about 17% compared to twelve monthly payments.</p>
               </div>
 
+              <p className={`${styles.planCardSubtext} text-muted small mb-4`}>Complete NRI financial management</p>
+
               <ul className={styles.featureList}>
                 {professionalFeaturesMonthly.map((line) => (
                   <FeatureRow key={line}>{line}</FeatureRow>
@@ -219,30 +220,30 @@ export default function SubscriptionPlansSection() {
               </ul>
               <div className="mt-4 pt-2">
                 <Link href="/login" className="btn btn-main full-width rounded-4 fw-medium py-3">
-                  Start free trial
+                  Start Free Trial
                 </Link>
               </div>
             </div>
           </div>
 
-          <div className="col-xl-4 col-md-12">
+          <div className="col-xl-4 col-md-6">
             <div className={`${styles.planCard} p-4 pt-5`}>
-              <h5 className="fw-bold mb-1">Enterprise</h5>
-              <p className="text-muted small mb-3">Premium solutions for high-value clients.</p>
-
+              <h5 className={styles.planCardTitle}>Enterprise</h5>
               <div className={`${styles.priceBlockMonthly} mb-4`}>
-                <div className={styles.priceDisplay}>
+                <div className={`${styles.priceDisplay} mb-1`}>
                   ₹{entMonthly.toLocaleString('en-IN')}
                   <span className="fs-6 fw-semibold text-muted">/month</span>
                 </div>
               </div>
-
               <div className={`${styles.priceBlockAnnual} mb-4`}>
-                <div className={styles.priceDisplay}>
+                <div className={`${styles.priceDisplay} mb-1`}>
                   ₹{entAnnual.toLocaleString('en-IN')}
                   <span className="fs-6 fw-semibold text-muted">/year</span>
                 </div>
               </div>
+              <p className={`${styles.planCardSubtext} text-muted small mb-4`}>
+                Premium solutions for high-value clients
+              </p>
 
               <ul className={styles.featureList}>
                 {enterpriseFeatures.map((line) => (
@@ -250,8 +251,8 @@ export default function SubscriptionPlansSection() {
                 ))}
               </ul>
               <div className="mt-4 pt-2">
-                <Link href="/contact" className="btn btn-outline-main full-width rounded-4 fw-medium py-3">
-                  Contact sales
+                <Link href="/#contact" className="btn btn-outline-main full-width rounded-4 fw-medium py-3">
+                  Contact Sales
                 </Link>
               </div>
             </div>
@@ -261,8 +262,8 @@ export default function SubscriptionPlansSection() {
 
       <div className="row justify-content-center mb-3 mt-5">
         <div className="col-lg-8 text-center">
-          <h3 className="mb-2">Need individual services?</h3>
-          <p className="text-muted mb-0">Prefer to pay as you go? We offer standalone services too.</p>
+          <h3 className={`mb-2 ${styles.individualSectionTitle}`}>Need Individual Services?</h3>
+          <p className={`mb-0 ${styles.individualSectionLead}`}>Prefer to pay as you go? We offer standalone services too</p>
         </div>
       </div>
 
@@ -270,11 +271,11 @@ export default function SubscriptionPlansSection() {
         {individualServices.map((svc) => (
           <div className="col-xl-4 col-md-6" key={svc.title}>
             <div className={styles.serviceCard}>
-              <h5 className="fw-bold mb-2">{svc.title}</h5>
-              <div className={`${styles.priceDisplay} mb-2`}>₹ {svc.price}</div>
-              <p className="text-muted small mb-4">{svc.desc}</p>
-              <Link href="/contact" className="btn btn-outline-main full-width rounded-4">
-                Book now
+              <h5 className={`fw-bold mb-2 ${styles.serviceCardHeading}`}>{svc.title}</h5>
+              <div className={`${styles.serviceCardPrice} mb-2`}>₹ {svc.price}</div>
+              <p className={`${styles.serviceCardMeta} small mb-4`}>{svc.desc}</p>
+              <Link href="/#contact" className="btn btn-outline-main full-width rounded-4">
+                Book Now
               </Link>
             </div>
           </div>
@@ -283,9 +284,43 @@ export default function SubscriptionPlansSection() {
 
       <div className="row justify-content-center mb-3">
         <div className="col-lg-8 text-center">
-          <Link href="/contact" className="btn btn-light-main btn-lg rounded-5 px-5">
-            View all individual services
+          <Link href="/#services" className={`btn btn-lg rounded-4 px-5 ${styles.viewAllServicesBtn}`}>
+            View All Individual Services
           </Link>
+        </div>
+      </div>
+
+      <div className={`row justify-content-center ${styles.contactStrip}`}>
+        <div className="col-lg-10 col-xl-9">
+          <p className={`text-center text-uppercase small fw-bold ${styles.contactKicker}`}>Get In Touch</p>
+          <h2 className="text-center mb-2">Contact NRI Suvidha</h2>
+          <p className="text-center text-muted mx-auto mb-4" style={{ maxWidth: '36rem' }}>
+            Have questions about our NRI financial services? We&apos;re here to help you manage your Indian affairs from
+            anywhere in the world.
+          </p>
+          <div className="row g-4 justify-content-center mb-2">
+            <div className="col-md-6">
+              <div className={styles.contactCard}>
+                <h3 className="h6 fw-bold mb-3">General Inquiries</h3>
+                <p className="mb-2">
+                  <a href="mailto:hello@nrisuvidha.com" className={styles.contactLink}>
+                    hello@nrisuvidha.com
+                  </a>
+                </p>
+                <p className="mb-0">
+                  <a href="tel:+9118001234567" className={styles.contactLink}>
+                    +91-1800-123-4567 (Toll Free)
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className={styles.contactCard}>
+                <h3 className="h6 fw-bold mb-3">Customer Support</h3>
+                <p className="text-muted mb-0 small">Available 24/7 for all your queries</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -1,0 +1,127 @@
+/* Solid gold bar for /pricing — overrides nav-on-light-hero contrast rules */
+
+.pricing-header.header {
+  background: linear-gradient(
+    180deg,
+    #c4a058 0%,
+    #b89b5e 42%,
+    #a8894a 100%
+  ) !important;
+  box-shadow: 0 2px 14px rgba(52, 40, 12, 0.22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.pricing-header.header.header-fixed {
+  background: linear-gradient(180deg, #c4a058 0%, #b89b5e 52%, #9e8440 100%) !important;
+}
+
+.pricing-header .nav-toggle {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.pricing-header
+  .navigation-landscape
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li
+  > a {
+  color: rgba(255, 255, 255, 0.96) !important;
+}
+
+.pricing-header
+  .navigation-landscape
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li:hover
+  > a,
+.pricing-header
+  .navigation-landscape
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li.active
+  > a {
+  color: #fff !important;
+  opacity: 1;
+}
+
+.pricing-header .navigation-landscape .submenu-indicator-chevron {
+  border-color: transparent rgba(255, 255, 255, 0.92) rgba(255, 255, 255, 0.92) transparent !important;
+}
+
+.pricing-header .navigation-portrait .nav-menus-wrapper .nav-menu:not(.nav-menu-social) > li > a {
+  color: #374151 !important;
+}
+
+.pricing-header
+  .navigation-portrait
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li:hover
+  > a,
+.pricing-header
+  .navigation-portrait
+  .nav-menus-wrapper
+  .nav-menu:not(.nav-menu-social)
+  > li.active
+  > a {
+  color: #111827 !important;
+}
+
+.pricing-header .navigation-portrait .nav-menus-wrapper .submenu-indicator-chevron {
+  border-color: transparent #6b7280 #6b7280 transparent !important;
+}
+
+.pricing-header .nav-brand img {
+  filter: brightness(0) invert(1);
+}
+
+.pricing-header .mobile_nav .fill-main {
+  fill: #fff !important;
+}
+
+.pricing-header
+  .navigation-landscape
+  .nav-menu.nav-menu-social
+  > li.list-buttons
+  > a.pricing-nav-contact-btn,
+.pricing-header
+  .navigation-landscape
+  .nav-menu.nav-menu-social
+  > li.list-buttons
+  > a.pricing-nav-contact-btn:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  box-shadow: none !important;
+  font-weight: 600;
+}
+
+.pricing-header
+  .navigation-landscape
+  .nav-menu.nav-menu-social
+  > li.list-buttons
+  > a.pricing-nav-contact-btn:hover {
+  background: rgba(255, 255, 255, 0.32) !important;
+}
+
+.pricing-header
+  .navigation-portrait
+  .nav-menu.nav-menu-social
+  > li.list-buttons
+  > a.pricing-nav-contact-btn,
+.pricing-header
+  .navigation-portrait
+  .nav-menu.nav-menu-social
+  > li.list-buttons
+  > a.pricing-nav-contact-btn:hover {
+  background: rgba(184, 155, 94, 0.2) !important;
+  color: #3d3518 !important;
+  border: 1px solid rgba(167, 140, 80, 0.55) !important;
+  box-shadow: none !important;
+  font-weight: 600;
+}
+
+/* Mobile drawer */
+.pricing-header .navigation-portrait .nav-menus-wrapper {
+  background: linear-gradient(180deg, #fffdfb 0%, #f5f0e3 100%) !important;
+}

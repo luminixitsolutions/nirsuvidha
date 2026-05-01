@@ -2,9 +2,13 @@
 
 import { useMemo, useState } from 'react'
 import styles from '../legal/legal-services-content.module.css'
+import pageStyles from '@/app/services/[slug]/service-detail.module.css'
 import {
   fdHighlights,
   fdOffers,
+  financeAccountForm,
+  financeAccountsSection,
+  financeFdSection,
   financePage,
   loanDocumentsChecklist,
   loanProducts,
@@ -16,7 +20,6 @@ import ServiceCta from './service-cta'
 import {
   ServiceFeatureList,
   ServicePageHeader,
-  ServiceSectionHead,
   SvcLink,
   serviceDense,
 } from './service-primitives'
@@ -26,12 +29,13 @@ type Tab = 'banking' | 'loans' | 'calculator' | 'pan'
 const tabs: { id: Tab; label: string; icon: string }[] = [
   { id: 'banking', label: 'Banking & FD', icon: 'fa-solid fa-landmark' },
   { id: 'loans', label: 'Loans', icon: 'fa-solid fa-hand-holding-dollar' },
-  { id: 'calculator', label: 'EMI', icon: 'fa-solid fa-calculator' },
-  { id: 'pan', label: 'PAN', icon: 'fa-solid fa-id-card' },
+  { id: 'calculator', label: 'Calculator', icon: 'fa-solid fa-calculator' },
+  { id: 'pan', label: 'PAN Services', icon: 'fa-solid fa-id-card' },
 ]
 
 export default function FinanceServicesView() {
   const [tab, setTab] = useState<Tab>('banking')
+  const [noPanHelp, setNoPanHelp] = useState(false)
   const [loanAmount, setLoanAmount] = useState('')
   const [rate, setRate] = useState('12')
   const [years, setYears] = useState('5')
@@ -58,18 +62,17 @@ export default function FinanceServicesView() {
       />
 
       <div className={d.tabBar}>
-        <ul
-          className={`nav nav-pills flex-column flex-sm-row flex-sm-nowrap gap-1 overflow-auto ${d.tabNav}`}
-          role="tablist"
-        >
+        <ul className={`nav nav-pills ${d.tabNav}`} role="tablist">
           {tabs.map((t) => (
-            <li className="nav-item flex-shrink-0" key={t.id}>
+            <li className="nav-item" key={t.id}>
               <button
                 type="button"
                 className={`nav-link ${tab === t.id ? 'active' : ''}`}
                 onClick={() => setTab(t.id)}
+                role="tab"
+                aria-selected={tab === t.id}
               >
-                <i className={`${t.icon} me-1`} aria-hidden />
+                <i className={t.icon} aria-hidden />
                 {t.label}
               </button>
             </li>
@@ -82,13 +85,11 @@ export default function FinanceServicesView() {
           <div className="col-12">
             <div className={`card border-0 shadow-sm ${d.hubPanel}`}>
               <div className={`card-body ${d.cardBodyMd}`}>
-                <ServiceSectionHead
-                  kicker="Fixed deposits"
-                  title="Indicative FD rates"
-                  sub="Rates change with issuer policy — we confirm live quotes on request."
-                  iconClass="fa-solid fa-chart-line"
-                />
-                <div className={`row ${d.rowDense} mb-1`}>
+                <div className="mb-3">
+                  <h2 className={pageStyles.blockTitle}>{financeFdSection.title}</h2>
+                  <p className={`${pageStyles.blockSub} mb-0`}>{financeFdSection.subtitle}</p>
+                </div>
+                <div className={`row ${d.rowDense} mb-3`}>
                   {fdHighlights.map((h) => (
                     <div className="col-6 col-md-3" key={h.label}>
                       <div className={d.statTile}>
@@ -108,15 +109,17 @@ export default function FinanceServicesView() {
                               <span className={d.fdInitial}>{o.initial}</span>
                               <span className="fw-semibold small text-truncate">{o.name}</span>
                             </div>
-                            <span className="badge rounded-pill bg-success-subtle text-success-emphasis small">{o.rate}</span>
                           </div>
-                          <div className="small text-muted d-flex justify-content-between mb-3" style={{ fontSize: '0.8rem' }}>
-                            <span>Min {o.min}</span>
-                            <span>{o.tenure}</span>
+                          <p className="fw-bold mb-2 small">{o.rate}</p>
+                          <div className="small text-muted mb-1" style={{ fontSize: '0.8rem' }}>
+                            Min Amount: {o.min}
                           </div>
-                          <div className="mt-auto d-flex justify-content-end">
-                            <SvcLink href="/contact" size="sm">
-                              Get quote
+                          <div className="small text-muted mb-3" style={{ fontSize: '0.8rem' }}>
+                            Tenure: {o.tenure}
+                          </div>
+                          <div className="mt-auto w-100">
+                            <SvcLink href="/contact" size="sm" fullWidth>
+                              Invest Now
                             </SvcLink>
                           </div>
                         </div>
@@ -131,12 +134,10 @@ export default function FinanceServicesView() {
           <div className="col-12">
             <div className={`card border-0 shadow-sm ${d.hubPanel}`}>
               <div className={`card-body ${d.cardBodyMd}`}>
-                <ServiceSectionHead
-                  kicker="Accounts"
-                  title="NRE / NRO / FCNR onboarding"
-                  sub="We coordinate documentation and bank introductions."
-                  iconClass="fa-solid fa-building-columns"
-                />
+                <div className="mb-3">
+                  <h2 className={pageStyles.blockTitle}>{financeAccountsSection.title}</h2>
+                  <p className={`${pageStyles.blockSub} mb-0`}>{financeAccountsSection.subtitle}</p>
+                </div>
                 <div className={`row ${d.rowDense}`}>
                   {nriBankAccounts.map((b) => (
                     <div className="col-md-6 col-xl-3" key={b.bank}>
@@ -155,8 +156,8 @@ export default function FinanceServicesView() {
                             {b.badge}
                           </span>
                           <div>
-                            <SvcLink href="/contact" variant="outline" size="sm">
-                              Apply
+                            <SvcLink href="/contact" variant="outline" size="sm" fullWidth>
+                              Open Account
                             </SvcLink>
                           </div>
                         </div>
@@ -166,16 +167,18 @@ export default function FinanceServicesView() {
                 </div>
 
                 <div className={d.formInset}>
-                  <div className={d.formInsetTitle}>
-                    <i className="fa-solid fa-paper-plane text-main" aria-hidden />
-                    Quick account request
+                  <div className="mb-3">
+                    <h3 className={`${pageStyles.blockTitle} mb-1`} style={{ fontSize: '1.15rem' }}>
+                      {financeAccountForm.title}
+                    </h3>
+                    <p className={`${pageStyles.blockSub} mb-0`}>{financeAccountForm.subtitle}</p>
                   </div>
                   <div className={`row ${d.rowDense}`}>
                     <div className="col-md-6">
-                      <label className="form-label small fw-medium text-muted">Account type</label>
+                      <label className="form-label small fw-medium text-muted">Account Type</label>
                       <select className={`form-select ${styles.formControlRounded}`} defaultValue="">
                         <option value="" disabled>
-                          Select
+                          Select account type
                         </option>
                         <option>NRE</option>
                         <option>NRO</option>
@@ -183,10 +186,10 @@ export default function FinanceServicesView() {
                       </select>
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label small fw-medium text-muted">Preferred bank</label>
+                      <label className="form-label small fw-medium text-muted">Preferred Bank</label>
                       <select className={`form-select ${styles.formControlRounded}`} defaultValue="">
                         <option value="" disabled>
-                          Select
+                          Select bank
                         </option>
                         <option>ICICI Bank</option>
                         <option>HDFC Bank</option>
@@ -195,10 +198,10 @@ export default function FinanceServicesView() {
                       </select>
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label small fw-medium text-muted">Country of residence</label>
+                      <label className="form-label small fw-medium text-muted">Current Country of Residence</label>
                       <select className={`form-select ${styles.formControlRounded}`} defaultValue="">
                         <option value="" disabled>
-                          Select
+                          Select country
                         </option>
                         <option>United States</option>
                         <option>United Kingdom</option>
@@ -210,10 +213,10 @@ export default function FinanceServicesView() {
                       </select>
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label small fw-medium text-muted">Monthly income (USD)</label>
+                      <label className="form-label small fw-medium text-muted">Monthly Income (USD)</label>
                       <select className={`form-select ${styles.formControlRounded}`} defaultValue="">
                         <option value="" disabled>
-                          Range
+                          Select income range
                         </option>
                         <option>Under $3,000</option>
                         <option>$3,000 – $5,000</option>
@@ -222,17 +225,33 @@ export default function FinanceServicesView() {
                       </select>
                     </div>
                     <div className="col-12">
-                      <div className="form-check mt-1">
-                        <input className="form-check-input" type="checkbox" id="no-pan" />
+                      <div className="form-check mt-2">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="no-pan"
+                          checked={noPanHelp}
+                          onChange={(e) => setNoPanHelp(e.target.checked)}
+                        />
                         <label className="form-check-label small" htmlFor="no-pan">
-                          I need help applying for PAN
+                          {financeAccountForm.panCheckbox}
                         </label>
                       </div>
+                      <p className="small text-muted mt-1 mb-0">{financeAccountForm.panCheckboxHelp}</p>
+                      {noPanHelp ? (
+                        <div className="rounded-3 border p-3 mt-3 bg-body-secondary bg-opacity-25">
+                          <h4 className="fw-bold mb-2 small d-flex align-items-center gap-2">
+                            <i className="fa-solid fa-circle-check text-success" aria-hidden />
+                            {financeAccountForm.panCalloutTitle}
+                          </h4>
+                          <p className="small text-muted mb-0">{financeAccountForm.panCalloutBody}</p>
+                        </div>
+                      ) : null}
                     </div>
                   </div>
-                  <div className="d-flex flex-wrap justify-content-end gap-2 mt-3 pt-2 border-top border-light">
-                    <SvcLink href="/contact" size="sm">
-                      Submit request
+                  <div className="mt-3 pt-3 border-top border-light">
+                    <SvcLink href="/contact" fullWidth>
+                      {financeAccountForm.submitCta}
                     </SvcLink>
                   </div>
                 </div>
