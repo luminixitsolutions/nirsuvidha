@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { categoryData } from '../../data/data'
 import { homePaths } from '../../data/site-content'
-import type { PublicService } from '@/lib/public-services'
+import { filterServicesForMarketingNav, type PublicService } from '@/lib/public-services'
 import navSvcStyles from './nav-services-dropdown.module.css'
 
 type NavServiceRow = {
@@ -17,7 +17,7 @@ function buildServiceRows(
   serviceItems: PublicService[] | undefined,
 ): NavServiceRow[] {
   if (serviceItems && serviceItems.length > 0) {
-    return serviceItems.map((s) => ({
+    return filterServicesForMarketingNav(serviceItems).map((s) => ({
       key: s.id,
       icon: s.icon,
       title: s.title,

@@ -66,13 +66,13 @@ export const NEED_OPTIONS: {
     footer: 'Company registration & compliance',
     icon: 'fa-solid fa-briefcase',
   },
-  {
+  /* {
     id: 'real-estate',
     label: 'Real Estate Services',
     desc: 'Due diligence, documentation, and closure support for property in India.',
     footer: 'Buy, sell & legal verification',
     icon: 'fa-solid fa-house-chimney',
-  },
+  }, */
   {
     id: 'onboarding',
     label: 'Secure Onboarding',

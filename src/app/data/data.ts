@@ -262,6 +262,7 @@ export const categoryData = [
         job:'Company registration & compliance',
         href:'/#services',
     },
+    /* Hidden from Services dropdown — restore to show again.
     {
         icon:'fa-solid fa-house-chimney',
         title:'Real Estate Services',
@@ -269,6 +270,7 @@ export const categoryData = [
         job:'Buy, sell & legal verification',
         href:'/#services',
     },
+    */
     {
         icon:'fa-solid fa-shield-halved',
         title:'Secure Onboarding',

@@ -100,10 +100,10 @@ export const services = [
     title: 'Business Setup & Advisory',
     desc: 'Company registration, compliance, and business advisory services in India.',
   },
-  {
+  /* {
     title: 'Real Estate Services',
     desc: 'Property buying, selling, legal verification, and documentation support.',
-  },
+  }, */
 ] as const
 
 export const legalInheritancePlanning = [

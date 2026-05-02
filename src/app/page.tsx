@@ -14,7 +14,7 @@ import SubscribeTwo from "./components/subscribe/subscribe-two";
 import FooterOne from "./components/footer/footer-one";
 import ScrollToTop from "./components/scroll-to-top";
 import { getHomeCms } from "@/lib/home-cms";
-import { getPublicServices } from "@/lib/public-services";
+import { getPublicServices, filterServicesForMarketingNav } from "@/lib/public-services";
 import { getPublicTestimonials } from "@/lib/public-testimonials";
 import { getPublicTrustedPartners } from "@/lib/public-trusted-partners";
 import goldHero from "./hero-light-gold.module.css";
@@ -138,7 +138,7 @@ export default async function Home() {
                     <div
                       className={`col-12 col-lg-7 col-xl-8 order-1 ${homeServices.servicesCol}`}
                     >
-                        <CategoryTwo border={false} items={serviceItems} />
+                        <CategoryTwo border={false} items={filterServicesForMarketingNav(serviceItems)} />
                     </div>
                     <div
                       className={`col-12 col-lg-5 col-xl-4 order-2 d-none d-lg-flex ${homeServices.servicesImageCol}`}

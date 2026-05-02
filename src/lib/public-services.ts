@@ -39,6 +39,17 @@ export async function getPublicServices(): Promise<PublicService[]> {
   return res?.data ?? []
 }
 
+/** Slugs/title excluded from nav + home service grid — page `/services/[slug]` still works. */
+const MARKETING_HIDDEN_SERVICE_SLUGS = new Set(['real-estate-services', 'real-estate'])
+
+export function filterServicesForMarketingNav(services: PublicService[]): PublicService[] {
+  return services.filter((s) => {
+    const slug = (s.slug ?? '').toLowerCase().trim()
+    if (slug && MARKETING_HIDDEN_SERVICE_SLUGS.has(slug)) return false
+    return s.title.trim().toLowerCase() !== 'real estate services'
+  })
+}
+
 /**
  * Service detail + published sub-services for `/services/[slug]`.
  */
